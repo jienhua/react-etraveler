@@ -1,0 +1,125 @@
+{
+    "traveler":[
+		{
+			"traveler_id": 0,
+			"sales_order_num":115157,
+			"serial_num":"D1646B03816",
+			"traveler_template_id": 0,
+			"isComplete":false,
+			"reviewBy": "",
+			"reviewDate": "",
+			"status": "inComplete"
+		}
+	],
+	"sales_order_info":[
+		{
+			"sales_order_num": 115157,
+			"product_name": "VAR INIZIO 8110 2.0 NO SSD (P1003094003)",
+			"customer_num": "VAR01/VAR04/VAR07",
+			"apt_pn_num": "21-VB1050-6002"
+		}
+	],
+	"traveler_template":[
+		{
+			"traveler_template_id": 0,
+			"blueprint":[
+				{
+					"description": "Sub-Assembly #1 (Chassie)",
+					"blocks": [0,1,2,3,4]
+				},
+				{
+					"description": "Labels Proparation",
+					"blocks": [5,1,0,0,0,0,1]
+				}
+			],
+			"blocksHeaderOrder": ["Description","Qty","Process Record"],
+			"building_blocks":[0,1,2,3,4,5]
+		}
+	],
+	"traveler_template_blocks":[
+		{
+			"template_blocks_id": 0,
+			"description": "Visual Inspection chassis cosmetic before assembly...",
+			"qty": null,
+			"process_record": [
+				{
+					"check_box":true
+				}
+			]
+		},
+		{
+			"template_blocks_id": 1,
+			"description": "(R) AVAN-4184B One Shoebox W/350W PS",
+			"qty": null, 
+			"process_record": [
+				{
+					"check_box":true
+				}
+			]
+		}
+	],
+	"record_blocks":[
+		{
+			"traveler_id": 0,
+			"record_blocks_id": 0,
+			"description": "Visual Inspection chassis cosmetic before assembly...",
+			"qty": null,
+			"process_record": [
+				{
+					"check_box":true
+				}
+			],
+			"responsible": "",
+			"date": "type is date",
+			"edit": "type is date",
+			"history":[0,1]
+		},
+		{
+			"traveler_id": 0,
+			"record_blocks_id": 1,
+			"description": "(R) AVAN-4184B One Shoebox W/350W PS",
+			"qty": 1,
+			"process_record": [
+				{
+					"check_box":true
+				}
+			],
+			"responsible": "",
+			"date": "type is date",
+			"edit": "type is date",
+			"history": [2]
+		}
+	],
+	"history":[
+		{
+			"history_id": 0,
+			"traveler_id": 0,
+			"record_blocks_id": 0,
+			"description": "Visual Inspection chassis cosmetic before assembly...",
+			"qty": null,
+			"process_record": [
+				{
+					"check_box":true
+				}
+			],
+			"responsible": "",
+			"date": "type is date",
+			"edit": "type is date"
+		},
+		{
+			"history_id": 1,
+			"traveler_id": 0,
+			"record_blocks_id": 1,
+			"description": "(R) AVAN-4184B One Shoebox W/350W PS",
+			"qty": 1,
+			"process_record": [
+				{
+					"check_box":true
+				}
+			],
+			"responsible": "",
+			"date": "type is date",
+			"edit": "type is date"
+		}
+	]
+}

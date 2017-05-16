@@ -25,6 +25,10 @@ module.exports = {
           'style-loader',
           'css-loader?modules&importLoaders=1'
         ]
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
       }
     ]
   },
@@ -34,8 +38,9 @@ module.exports = {
   },
 
   devServer:{
-    'contentBase': './dist',
-    'inline': true,
+    contentBase: './dist',
+    inline: true,
+    historyApiFallback:true
   },
 
   plugins: process.env.NODE_ENV === 'production' ?[
