@@ -3,32 +3,22 @@ import {Button} from 'react-bootstrap';
 
 class FullPageTableRow extends React.Component{
 
-	constructor(props){
-		super(props);
-		let cols = [];
-		this.props.blocksHeader.map(e=>{
-			// console.log(e.split(' ').join('_').toLowerCase());
-			e = e.split(' ').join('_').toLowerCase();
-			if(this.props.block.hasOwnProperty(e)){
-				cols.push(this.props.block[e])
-			}
-			return;
-		})
-		// console.log(JSON.stringify(cols))
-		this.state = ({
-			cols:[]
-		})
-	}
-
-	clickBoolButton(event, index, bool){
-		let {block, id,setRecordResult} = this.props;
-		let temp = Object.assign({}, block);
-		temp.process_record[index].result = bool;
-		setRecordResult({
-			index: id,
-			data: temp
-		})
-	}
+	// constructor(props){
+	// 	super(props);
+	// 	let cols = [];
+	// 	this.props.blocksHeader.map(e=>{
+	// 		// console.log(e.split(' ').join('_').toLowerCase());
+	// 		e = e.split(' ').join('_').toLowerCase();
+	// 		if(this.props.block.hasOwnProperty(e)){
+	// 			cols.push(this.props.block[e])
+	// 		}
+	// 		return;
+	// 	})
+	// 	// console.log(JSON.stringify(cols))
+	// 	this.state = ({
+	// 		cols:[]
+	// 	})
+	// }
 
 	renderProcess(pr){
 		let {block} = this.props;
@@ -38,11 +28,11 @@ class FullPageTableRow extends React.Component{
 				output = (
 					<div>
 					<Button bsSize="xsmall"
-							onClick={(e)=>this.clickBoolButton(e, 0, true)} 
+							id={'boolButton_'+block.blocks_id+'_'+bIndex+'_true'}
 							active={b.result===undefined?false:
 									b.result?true:false}>{b.bool_option.true}</Button>
 					<Button bsSize="xsmall"
-							onClick={(e)=>this.clickBoolButton(e, 0, false)}
+							id={'boolButton_'+block.blocks_id+'_'+bIndex+'_false'}
 							active={b.result===undefined?false:
 									b.result?false:true}>{b.bool_option.false}</Button>
 					</div>

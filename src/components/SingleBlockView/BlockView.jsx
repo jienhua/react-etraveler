@@ -20,15 +20,15 @@ const modHeader = (input) =>{
 
 class BlockView extends React.Component{
 
-	clickBoolButton(event, index, prIndex, bool){
-	let {block, setRecordResult} = this.props
-		let temp = cloneDeep(block);
-		temp.process_record[prIndex].result = bool;
-		setRecordResult({
-			index: index,
-			data: temp
-		})
-	}
+	// clickBoolButton(event, index, prIndex, bool){
+	// let {block, setRecordResult} = this.props
+	// 	let temp = cloneDeep(block);
+	// 	temp.process_record[prIndex].result = bool;
+	// 	setRecordResult({
+	// 		index: index,
+	// 		data: temp
+	// 	})
+	// }
 
 	render(){
 		let {groupHeader, block, hidden, blocksHeader, stationNum, statePosition} = this.props;
@@ -74,10 +74,10 @@ class BlockView extends React.Component{
 												<ControlLabel>Option:</ControlLabel>
 												<ButtonToolbar>
 													<ButtonGroup>
-														<Button onClick={(event)=>this.clickBoolButton(event, block.blocks_id,index,true)}
+														<Button id={'boolButton_'+block.blocks_id+'_'+index+'_true'}
 																active={e.result===undefined?false:
 																		e.result?true:false}>{e.bool_option.true}</Button>
-														<Button onClick={(event)=>this.clickBoolButton(event, block.blocks_id,index,false)}
+														<Button id={'boolButton_'+block.blocks_id+'_'+index+'_false'}
 																active={e.result===undefined?false:
 																	    e.result?false:true}>{e.bool_option.false}</Button>
 													</ButtonGroup>

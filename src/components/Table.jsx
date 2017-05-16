@@ -27,8 +27,20 @@ class Table extends React.Component{
 
 	handleClick(event){
 		if(event.target.tagName !== 'BUTTON') return;
-		console.log('click')
-		console.log(event.target.tagName)
+		let eventProp = event.target.id.split('_');
+		if(eventProp[0]==='boolButton'){
+			// 0 = type
+			// 1 = blocks_id
+			// 2 = record_process index
+			// 3 = bool result
+			let {blocks, setRecordResult} = this.props;
+			let nextBlock = cloneDeep(blocks[eventProp[1]]);
+			nextBlock.process_record[eventProp[2]].result = (eventProp[3] == 'true');
+			setRecordResult({
+				index: parseInt(eventProp[1]),
+				data: nextBlock
+			})
+		}
 		event.stopPropagation();
 	}
 
