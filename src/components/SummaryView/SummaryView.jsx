@@ -8,7 +8,7 @@ class SummaryView extends React.Component{
 		let {blueprint, blocks, blocksHeader} = this.props;
 		return(
 			<div>
-				summary view
+				<h3>Summary View</h3>
 				<Table bordered condensed>
 					<thead>
 				      <tr>
@@ -21,25 +21,38 @@ class SummaryView extends React.Component{
 				        <th>Date</th>
 				      </tr>
 				    </thead>
-
 				    <tbody>
-				    	{blueprint.map((e, bpIndex) => {
+					    {blueprint.map((station, sIndex)=>{
+					    		let output =[];
+					    		let rowSpan = 1;
 
-				    		let output = [];
-				    		output.push((
-				    			<tr>
-				    				<td rowSpan={e.blocks.length+1}>{bpIndex+1}</td>
-				    				<td colSpan={blocksHeader.length+3}><b>{e.description}</b></td>
-				    			</tr>));
+					    		// find out number for rowSpan
+					    		station.objects.map(o=>{
+					    			rowSpan+= o.blocks.length+1;
+					    			return;
+					    		})
 
-				    		e.blocks.map((b, bIndex)=> {
-				    			output.push(<SummaryViewRow blocksHeader={blocksHeader} block={blocks[b]} isBlockHeader={false}/>)
-				    			return ;
-				    		})
-				    		
-				    		return output;	
-				    	})}
-
+					    		output.push(
+					    			<tr>
+					    				<td rowSpan={rowSpan}>{station.station}</td>
+					    			</tr>
+					    		)
+					    		station.objects.map((object, oIndex)=>{
+					    			output.push(
+					    				<tr>
+					    					<td colSpan={blocksHeader.length+3}><b>{object.description}</b></td>
+					    				</tr>,
+					    			)
+					    			object.blocks.map((b, bIndex)=>{
+					    				output.push(
+					    					<SummaryViewRow blocksHeader={blocksHeader} block={blocks[b]} isBlockHeader={false}/>
+					    				)
+					    				return;
+					    				})
+					    			return;
+					    		})
+					    		return output;
+					    	})}
 				    </tbody>
 				</Table>
 				<br/>

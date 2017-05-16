@@ -19,12 +19,12 @@ const mapStateToProps = ( state ) =>{
 		return;
 	})
 
-	let blocksPositionArr = [0];
+	/*let blocksPositionArr = [0];
 	blueprint.map((e,index)=>{
 		blocksPositionArr.push(blocksPositionArr[index]+e.blocks.length);
 		return;
 	})
-	blocksPositionArr.shift();
+	blocksPositionArr.shift();*/
 	return {
 		traveler_template: state.traveler_template,
 		blueprint: blueprint,
@@ -33,7 +33,7 @@ const mapStateToProps = ( state ) =>{
 		isFullPageTableView: state.viewControl.isFullPageTableView,
 		isSummaryView: state.viewControl.isSummaryView,
 		singleBlockViewProps: state.singleBlockViewProps,
-		blocksPositionArr:blocksPositionArr
+		/*blocksPositionArr:blocksPositionArr*/
 	}
 };
 

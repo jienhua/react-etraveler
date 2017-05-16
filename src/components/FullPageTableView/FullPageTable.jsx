@@ -24,25 +24,39 @@ class FullPageTable extends React.Component {
 				    </thead>
 
 				    <tbody>
-				    	{blueprint.map((e, bpIndex) => {
+				    	{blueprint.map((station, sIndex)=>{
+				    		let output =[];
+				    		let rowSpan = 1;
 
-				    		let output = [];
-				    		output.push((
-				    			<tr>
-				    				<td rowSpan={e.blocks.length+1}>{bpIndex+1}</td>
-				    				<td colSpan={blocksHeader.length+3}><b>{e.description}</b></td>
-				    			</tr>));
-
-				    		e.blocks.map((b, bIndex)=> {
-				    			output.push(<FullPageTableRow id={index} blocksHeader={blocksHeader} block={blocks[b]} isBlockHeader={false}
-				    										  setRecordResult={setRecordResult}/>)
-				    			index+=1;
-				    			return ;
+				    		// find out number for rowSpan
+				    		station.objects.map(o=>{
+				    			rowSpan+= o.blocks.length+1;
+				    			return;
 				    		})
-				    		
-				    		return output;	
-				    	})}
 
+				    		output.push(
+				    			<tr>
+				    				<td rowSpan={rowSpan}>{station.station}</td>
+				    			</tr>
+				    		)
+				    		station.objects.map((object, oIndex)=>{
+				    			output.push(
+				    				<tr>
+				    					<td colSpan={blocksHeader.length+3}><b>{object.description}</b></td>
+				    				</tr>,
+				    			)
+				    			object.blocks.map((b, bIndex)=>{
+				    				output.push(
+				    					<FullPageTableRow id={index} blocksHeader={blocksHeader} block={blocks[b]} isBlockHeader={false}
+				    										  setRecordResult={setRecordResult}/>
+				    				)
+				    				index+=1;
+				    				return;
+				    				})
+				    			return;
+				    		})
+				    		return output;
+				    	})}
 				    </tbody>
 				</Table>
 			</div>

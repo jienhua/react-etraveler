@@ -7,17 +7,12 @@ class SummaryViewRow extends React.Component{
 		super(props);
 		let cols = [];
 		this.props.blocksHeader.map(e=>{
-			// console.log(e.split(' ').join('_').toLowerCase());
 			e = e.split(' ').join('_').toLowerCase();
 			if(this.props.block.hasOwnProperty(e)){
 				cols.push(this.props.block[e])
 			}
 			return;
 		})
-		// console.log(JSON.stringify(cols))
-		// this.state = ({
-		// 	cols:[]
-		// })
 	}
 
 	getResult(input){

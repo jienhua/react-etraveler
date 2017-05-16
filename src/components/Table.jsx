@@ -14,7 +14,7 @@ class Table extends React.Component{
 			 changeCurrentBlock,
 			 isSummaryView,
 			 changeSummaryView,
-			 blocksPositionArr,
+			 /*blocksPositionArr*/
 			 setRecordResult} = this.props;
 			 // console.log(JSON.stringify(this.props));
 		return (
@@ -41,7 +41,7 @@ class Table extends React.Component{
 									  				   blocksHeader={blocksHeader}
 									  				   singleBlockViewProps={singleBlockViewProps}
 									  				   changeCurrentBlock={changeCurrentBlock}
-									  				   blocksPositionArr={blocksPositionArr}
+									  				   /*blocksPositionArr={blocksPositionArr}*/
 									  				   setRecordResult={setRecordResult}/>}
 			</div>
 		)

@@ -36,7 +36,7 @@ function record_blocks(state=[], action){
 		// 		return item;
 		// 	})
 		case actions.SET_RECORDRESULT:
-			temp = state.slice();
+			let temp = state.slice();
 			return temp.map((item, index)=>{
 				if(index === action.index){
 					return action.data;

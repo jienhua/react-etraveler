@@ -50,7 +50,7 @@ class SingleBlockView extends React.Component {
 	}
 
 	render() {
-		let {blueprint, blocks, blocksHeader, singleBlockViewProps,blocksPositionArr,
+		let {blueprint, blocks, blocksHeader, singleBlockViewProps,/*blocksPositionArr*/
 			setRecordResult} = this.props;
 		let index = 0,
 			buttonIndex = 0;
@@ -65,8 +65,7 @@ class SingleBlockView extends React.Component {
 				<br/><br/>
 				<ButtonToolbar style={{float:'right'}}>
 					<ButtonGroup>
-						{	
-							blueprint.map((e, index)=>{
+						{/*blueprint.map((e, index)=>{
 							let output = [];
 							e.blocks.map(b=>{
 								output.push(
@@ -79,13 +78,13 @@ class SingleBlockView extends React.Component {
 								return;
 							})
 							return output;
-						})}
+						})*/}
 					</ButtonGroup>
 				</ButtonToolbar>
 				{/*<span style={{float:'right', marginRight:'20px', paddingTop:'3px'}}><b>Station: </b></span>*/}
 				<div style={{clear:'both'}}></div>
 
-				{blueprint.map((e, bpIndex)=>{
+				{/*blueprint.map((e, bpIndex)=>{
 					let output = [];
 					e.blocks.map((b, bIndex)=>{
 						output.push(
@@ -105,7 +104,7 @@ class SingleBlockView extends React.Component {
 					})
 
 					return output;
-				})}
+				})*/}
 				{singleBlockViewProps.currentGroupPosition}
 			{/* add blocks button group
 				<ButtonToolbar style={{float:'right'}}>
