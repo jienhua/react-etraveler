@@ -16,10 +16,10 @@ export default ({
 		"isSOInfoHidden":true
 	},
 	"singleBlockViewProps":{
-		"currentPosition": 0,
+		"currentPosition": 11,
 		//help to find the postion of the block
 		// from using ex.[2,3]
-		"blocksPositionArr":[]
+		//"blocksPositionArr":[]
 	},
 	"traveler":{
 		"traveler_id": 0,
@@ -51,44 +51,37 @@ export default ({
 						"description": "Power On to test all Ethernet LEDs on then off",
 						"blocks": [2]
 					},
+					{
+						"description": "LED Check",
+						"blocks": [3]
+					},
+					{
+						"description":"Power On to test all Ethernet LEDs on then off",
+						"blocks": [4]
+					},
+					{
+						"description":"FAN verification:",
+						"blocks": [5,6, 7]
+					},
+					{
+						"description":"BOOT UP Verification",
+						"blocks": [11, 8, 12]
+					},
+					{
+						"description":"Console Signal Verification",
+						"blocks": [9]
+					},
+					{
+						"description":"SSD",
+						"blocks":[13, 10, 14]
+					},
+					{
+						"description":"DIMM Memory Verification",
+						"blocks":[15, 16]
+					}
 				]
 			}
-			// {
-			// 	"description": "RMA Verification Process",
-			// 	"blocks": [0,1]
-			// },
-			// {
-			// 	"description": "Power On to test all Ethernet LEDs on then off",
-			// 	"blocks": [2]
-			// },
-			// {
-			// 	"description": "LED Check",
-			// 	"blocks": [3]
-			// },
-			// {
-			// 	"description":"Power On to test all Ethernet LEDs on then off",
-			// 	"blocks": [4]
-			// },
-			// {
-			// 	"description":"FAN verification:",
-			// 	"blocks": [5,6, 7]
-			// },
-			// {
-			// 	"description":"BOOT UP Verification",
-			// 	"blocks": [11, 8, 12]
-			// },
-			// {
-			// 	"description":"Console Signal Verification",
-			// 	"blocks": [9]
-			// },
-			// {
-			// 	"description":"SSD",
-			// 	"blocks":[13, 10, 14]
-			// },
-			// {
-			// 	"description":"DIMM Memory Verification",
-			// 	"blocks":[15, 16]
-			// }
+			
 		],
 		"blocksHeaderOrder": ["Description","Action","Error","Process Record"],
 		"building_blocks":[0,1,2,3,4,5]

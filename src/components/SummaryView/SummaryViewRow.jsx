@@ -24,7 +24,7 @@ class SummaryViewRow extends React.Component{
 			case false:
 				return 'No';
 			default:
-				return '';
+				return input;
 		}
 	}
 

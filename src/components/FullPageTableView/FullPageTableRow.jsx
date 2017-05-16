@@ -31,8 +31,9 @@ class FullPageTableRow extends React.Component{
 	}
 
 	renderProcess(pr){
+		let {block} = this.props;
 		let output = [];
-		pr.map(b=>{
+		pr.map((b, bIndex)=>{
 			if(b.type==='bool_button'){
 				output = (
 					<div>
@@ -49,13 +50,13 @@ class FullPageTableRow extends React.Component{
 			}else if(b.type ==='input'){
 				output = (
 					<div>
-						{b.des}: <input />
+						{b.des}: <input id={'input_'+block.blocks_id+'_'+bIndex} defaultValue={b.result}/>
 					</div>
 				)
 			}else if(b.type === 'multi_button'){
-				b.option.map(e=>{
+				b.option.map((button,bIndex)=>{
 					output.push(
-						<Button bsSize="xsmall">{e}</Button>
+						<Button key={bIndex} bsSize="xsmall">{button}</Button>
 					)
 					return;
 				})

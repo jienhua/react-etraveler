@@ -19,35 +19,40 @@ class SingleBlockView extends React.Component {
 		let {changeCurrentBlock, singleBlockViewProps, blueprint, setBlockHeaderPosition} = this.props;
 		let max = 0;
 		let currentGroupHeaderPosition = singleBlockViewProps.currentGroupPosition;
-		let blocksPositionArr = singleBlockViewProps.blocksPositionArr;
-		// count total number of blocks
+
 		if(!isButtonGroup){
-			blueprint.map(e=>{
-				max+= e.blocks.length;
+			// count total number of blocks
+			blueprint.map(station=>{
+				station.objects.map(o=>{
+					max+=o.blocks.length;
+					return;
+				})
 				return;
 			})
+
 			if(input === -1 && singleBlockViewProps.currentPosition > 0){
 				changeCurrentBlock(singleBlockViewProps.currentPosition+input);
 			}else if(input === 1 && singleBlockViewProps.currentPosition <max-1){
 				changeCurrentBlock(singleBlockViewProps.currentPosition+input);
 			}
 		}else{
-			// console.log('here', input.target.id)
 			changeCurrentBlock(parseInt(input.target.id));
 		}
 	}
 
-	keyUp(event){
-		let {setRecordResult, singleBlockViewProps, blocks} = this.props;
-		let eventID = event.target.id.split('_'),
-			id = eventID[1],
-			type = eventID[0];
-		if(type === 'input'){
-			console.log(id, type)
-			console.log(event.target)
-			console.log(JSON.stringify(blocks[singleBlockViewProps.currentPosition]));
-		}
-	}
+	// onBlur(event){
+	// 	let {setRecordResult, singleBlockViewProps, blocks} = this.props;
+	// 	let eventID = event.target.id.split('_'),
+	// 		block_id = eventID[1],
+	// 		type = eventID[0],
+	// 		process_record_index = eventID[2];
+	// 	if(type === 'input'){
+	// 		let nextBlock = Object.assign({}, blocks[block_id]);
+	// 		nextBlock.process_record[process_record_index].result = event.target.value;
+			
+	// 	}
+	// 	event.stopPropagation();
+	// }
 
 	render() {
 		let {blueprint, blocks, blocksHeader, singleBlockViewProps,/*blocksPositionArr*/
@@ -56,7 +61,7 @@ class SingleBlockView extends React.Component {
 			buttonIndex = 0;
 
 		return (
-			<div onKeyUp={(event)=>this.keyUp(event)}>		
+			<div>		
 				<br/>
 				<ButtonGroup>
 					<Button onClick={()=>this.changeBlock(-1)}>Left</Button>
@@ -65,60 +70,59 @@ class SingleBlockView extends React.Component {
 				<br/><br/>
 				<ButtonToolbar style={{float:'right'}}>
 					<ButtonGroup>
-						{/*blueprint.map((e, index)=>{
-							let output = [];
-							e.blocks.map(b=>{
-								output.push(
-									<Button id={buttonIndex}
-										    onClick={(e)=>this.changeBlock(e,true)}
-										    style={{background:singleBlockViewProps.currentPosition===buttonIndex?
-										    	"grey":""}}>{buttonIndex+1}</Button>
-								)
-								buttonIndex+=1;
-								return;
+						{
+							blueprint.map((station, sIndex)=>{
+								let output=[];
+								station.objects.map((o, oIndex)=>{
+									o.blocks.map((b, bIndex)=>{
+										output.push(
+											<Button id={buttonIndex}
+													bsSize="xsmall"
+													//or small
+													onClick={(e)=>this.changeBlock(e, true)}
+													style={{background:singleBlockViewProps.currentPosition===buttonIndex?
+															"grey":""}}>
+														{sIndex+1+'-'+(oIndex+1)+'-'+(bIndex+1)}
+											</Button>
+										)
+										buttonIndex+=1;
+										return;
+									})
+									return;
+								})
+								return output;
 							})
-							return output;
-						})*/}
+						}
 					</ButtonGroup>
 				</ButtonToolbar>
 				{/*<span style={{float:'right', marginRight:'20px', paddingTop:'3px'}}><b>Station: </b></span>*/}
 				<div style={{clear:'both'}}></div>
-
-				{/*blueprint.map((e, bpIndex)=>{
-					let output = [];
-					e.blocks.map((b, bIndex)=>{
-						output.push(
-							<BlockView key={blocks[b].blocks_id} 
-								 id={index}
-								 statePosition={bIndex}
-								 hidden={{index:index, currentPosition:singleBlockViewProps.currentPosition}}
-								 groupHeader={e.description}
-								 block={blocks[b]}
-								 blocksHeader={blocksHeader}
-								 stationNum={bpIndex}
-								 setRecordResult={setRecordResult}
-							/>
-						)
-						index+=1;
-						return;
+				{
+					blueprint.map((station, sIndex)=>{
+						let output = [];
+						station.objects.map((o, oIndex)=>{
+							o.blocks.map((b,bIndex)=>{
+								output.push(
+									<BlockView key={blocks[b].blocks_id} 
+										 id={index}
+										 statePosition={bIndex}
+										 hidden={{index:index, currentPosition:singleBlockViewProps.currentPosition}}
+										 groupHeader={o.description}
+										 block={blocks[b]}
+										 blocksHeader={blocksHeader}
+										 stationNum={sIndex}
+										 setRecordResult={setRecordResult}
+									/>
+								)
+								index+=1;
+								return;
+							})
+							return;
+						})
+						return output;
 					})
-
-					return output;
-				})*/}
+				}
 				{singleBlockViewProps.currentGroupPosition}
-			{/* add blocks button group
-				<ButtonToolbar style={{float:'right'}}>
-					{blueprint.map((e, index)=>{
-						// console.log(index)
-						return (
-							<ButtonGroup key={index} >
-								{e.blocks.map((b,bIndex)=>{
-									return <Button style={blockButtonGroupStyle(bIndex)} key={bIndex}>{bIndex+1}</Button>
-								})}
-							</ButtonGroup>
-						)
-					})}
-				</ButtonToolbar>}*/}
 			</div>
 		)
 	}

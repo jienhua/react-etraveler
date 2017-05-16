@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
 import * as actions from '../actions/actions.js';
+import {cloneDeep} from 'lodash';
 
 
 function traveler (state={}, action){
@@ -38,8 +39,8 @@ function record_blocks(state=[], action){
 		case actions.SET_RECORDRESULT:
 			let temp = state.slice();
 			return temp.map((item, index)=>{
-				if(index === action.index){
-					return action.data;
+				if(item.blocks_id === action.input.index){
+					return action.input.data;
 				}
 				return item;
 			})
@@ -50,13 +51,13 @@ function record_blocks(state=[], action){
 function singleBlockViewProps(state={}, action){
 	switch(action.type){
 		case actions.SET_CURRENTBLOCKPOSITION:
-			return Object.assign({}, state, {
-				currentPosition: action.input
-			})
+			let nextState = cloneDeep(state);
+			nextState.currentPosition = action.input;
+			return nextState;
 		case actions.SET_BLOCKSPOSITIONARR:
-			return Object.assign({}, state, {
-				blocksPositionArr: action.arr
-			})
+			nextState = cloneDeep(state);
+			nextState.blocksPositionArr = action.arr;
+			return nextState;
 		default: return state;
 	}
 }

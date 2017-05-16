@@ -1,6 +1,7 @@
 import React from 'react';
 import {Form, FormGroup, ControlLabel, FormControl, Button, Checkbox, Panel,
 		Grid, Row, Col, ButtonToolbar,ButtonGroup} from 'react-bootstrap';
+import {cloneDeep} from 'lodash';
 
 const hiddeStyle = (index, currShowIndex) =>{
 	let display = "";
@@ -17,23 +18,16 @@ const modHeader = (input) =>{
 	return input.split(' ').join('_').toLowerCase();
 }
 
-const clickBoolButton = (event, index, prIndex, bool, block) => {
-	// console.log(event.target, index, bool, block);
-	block.process_record[prIndex].result = bool;
-	console.log(block);
-}
-
 class BlockView extends React.Component{
 
 	clickBoolButton(event, index, prIndex, bool){
 	let {block, setRecordResult} = this.props
-	// console.log(event.target, index, bool, block);
-	let temp = Object.assign({}, block);
-	temp.process_record[prIndex].result = bool;
-	setRecordResult({
-		index: index,
-		data: temp
-	})
+		let temp = cloneDeep(block);
+		temp.process_record[prIndex].result = bool;
+		setRecordResult({
+			index: index,
+			data: temp
+		})
 	}
 
 	render(){
@@ -80,10 +74,10 @@ class BlockView extends React.Component{
 												<ControlLabel>Option:</ControlLabel>
 												<ButtonToolbar>
 													<ButtonGroup>
-														<Button onClick={(event)=>this.clickBoolButton(event, statePosition,index,true)}
+														<Button onClick={(event)=>this.clickBoolButton(event, block.blocks_id,index,true)}
 																active={e.result===undefined?false:
 																		e.result?true:false}>{e.bool_option.true}</Button>
-														<Button onClick={(event)=>this.clickBoolButton(event, statePosition,index,false)}
+														<Button onClick={(event)=>this.clickBoolButton(event, block.blocks_id,index,false)}
 																active={e.result===undefined?false:
 																	    e.result?false:true}>{e.bool_option.false}</Button>
 													</ButtonGroup>
@@ -108,7 +102,7 @@ class BlockView extends React.Component{
 										output = (
 											<FormGroup key={index}>
 												<ControlLabel>{e.des}:</ControlLabel>
-												<FormControl id={'input_'+index} placeholder={e.des} />
+												<FormControl id={'input_'+block.blocks_id+'_'+index} defaultValue={e.result} placeholder={e.des} />
 											</FormGroup>
 										)
 									}
