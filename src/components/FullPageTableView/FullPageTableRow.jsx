@@ -21,8 +21,8 @@ class FullPageTableRow extends React.Component{
 					</div>
 				)
 			}else if(pr.type ==='input'){
-				output = (
-					<div>
+				output.push(
+					<div key={prIndex}>
 						{pr.des}: <input id={'input_'+block.blocks_id+'_'+prIndex} defaultValue={pr.result}/>
 					</div>
 				)

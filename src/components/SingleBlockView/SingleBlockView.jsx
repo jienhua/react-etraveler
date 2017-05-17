@@ -82,7 +82,7 @@ class SingleBlockView extends React.Component {
 													onClick={(e)=>this.changeBlock(e, true)}
 													style={{background:singleBlockViewProps.currentPosition===buttonIndex?
 															"grey":""}}>
-														{sIndex+1+'-'+(oIndex+1)+'-'+(bIndex+1)}
+														{station.station+'-'+(oIndex+1)+'-'+(bIndex+1)}
 											</Button>
 										)
 										buttonIndex+=1;

@@ -15,17 +15,23 @@ class SummaryViewRow extends React.Component{
 		})
 	}
 
-	getResult(input){
-		switch(input){
-			case undefined:
-				return '';
-			case true:
-				return 'Yes';
-			case false:
-				return 'No';
-			default:
-				return input;
-		}
+	renderProcess(input){
+		let output = [];
+		input.map((pr, prIndex)=>{
+			if(pr.type === 'bool_button' || pr.type === 'multi_button'){
+				output.push(
+					<p key={prIndex}>{pr.result}</p>
+				)
+			}else if(pr.type === 'input'){
+				if(pr.result){
+					output.push(
+						<p key={prIndex}>{pr.des}: {pr.result}</p>
+					)
+				}
+			}
+			return;
+		})
+		return output;
 	}
 
 
@@ -35,7 +41,7 @@ class SummaryViewRow extends React.Component{
 			<tr>
 				<td>{block.description}</td>
 				{/*<td>{block.action}</td>*/}
-				<td>{this.getResult(block.process_record[0].result)}</td>
+				<td>{this.renderProcess(block.process_record)}</td>
 				<td><input disabled/></td>
 				<td><input type="date" disabled/></td>
 			</tr>

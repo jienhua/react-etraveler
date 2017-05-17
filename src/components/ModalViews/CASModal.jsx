@@ -5,8 +5,7 @@ export class CASModal extends React.Component{
 	render() {
 		let {show, changeCASModalView} = this.props;
 		return (
-			<div>
-				CAS				
+			<div>		
 				<Modal
 					show={show}
 					onHide={()=>changeCASModalView()}
@@ -17,7 +16,7 @@ export class CASModal extends React.Component{
 			        	<Modal.Title id="contained-modal-title">Contained Modal</Modal.Title>
 			        </Modal.Header>
 			        <Modal.Body>
-			            Elit est explicabo ipsum eaque dolorem blanditiis doloribus sed id ipsam, beatae, rem fuga id earum? Inventore et facilis obcaecati.
+			            <h1>CAS</h1>
 			        </Modal.Body>
 			        <Modal.Footer>
 			            <Button onClick={close}>Close</Button>

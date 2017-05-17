@@ -81,6 +81,15 @@ export default ({
 						"blocks":[15, 16]
 					}
 				]
+			},
+			{
+				"station":5,
+				"objects":[
+					{
+						"description":"Packing",
+						"blocks":[17]
+					}
+				]
 			}
 			
 		],
@@ -449,6 +458,29 @@ export default ({
 					"type": "input",
 					"des": "DIMM SN SN",
 					"action_type":"Disposition",
+					"result": undefined,
+				}
+			],
+			"responsible": "",
+			"date": "type is date",
+			"edit": "type is date",
+			"history": [2]
+		},
+		{
+			"traveler_id": 0,
+			"blocks_id": 17,
+			"description": "Packing",
+			"action":"...",
+			"error":"",
+			"process_record": [
+				{
+					"type": "input",
+					"des": "PSU MPN",
+					"result": undefined,
+				},
+				{
+					"type": "input",
+					"des": "PSU SN",
 					"result": undefined,
 				}
 			],
