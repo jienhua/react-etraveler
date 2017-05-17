@@ -33,3 +33,6 @@ export {SampleSNTable} from './Sample/SampleSNTable';
 
 // Navigation 
 export {Navigation} from './Navigation';
+
+// Modal Views
+export {CASModal} from './ModalViews/CASModal';

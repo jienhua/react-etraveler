@@ -13,7 +13,8 @@ export default ({
 		"isFullPageTableView": false,
 		"isSummaryView": false,
 		"isHeaderHidden": true,
-		"isSOInfoHidden":true
+		"isSOInfoHidden": true,
+		"isCASModalView": false
 	},
 	"singleBlockViewProps":{
 		"currentPosition": 11,

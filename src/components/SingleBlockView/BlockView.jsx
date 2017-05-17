@@ -20,22 +20,11 @@ const modHeader = (input) =>{
 
 class BlockView extends React.Component{
 
-	// clickBoolButton(event, index, prIndex, bool){
-	// let {block, setRecordResult} = this.props
-	// 	let temp = cloneDeep(block);
-	// 	temp.process_record[prIndex].result = bool;
-	// 	setRecordResult({
-	// 		index: index,
-	// 		data: temp
-	// 	})
-	// }
-
 	render(){
 		let {groupHeader, block, hidden, blocksHeader, stationNum, statePosition} = this.props;
 		
 		return(
 			<div style={hiddeStyle(hidden.index, hidden.currentPosition)}>		
-				{/*<p><b>Station: {stationNum+1}</b></p>*/}
 				<Panel header={groupHeader}>
 					<Grid>
 						<Row>
@@ -92,7 +81,7 @@ class BlockView extends React.Component{
 												<ButtonToolbar>
 													<ButtonGroup>
 														{e.option.map((item, itemIndex)=>{
-															return <Button key={itemIndex}>{item}</Button>
+															return <Button key={itemIndex} id={'multiButton_'+block.blocks_id+'_'+index+'_'+item}>{item}</Button>
 														})}
 													</ButtonGroup>
 												</ButtonToolbar>

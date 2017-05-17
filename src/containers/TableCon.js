@@ -32,6 +32,7 @@ const mapStateToProps = ( state ) =>{
 		blocksHeader: blocksHeaderOrder,
 		isFullPageTableView: state.viewControl.isFullPageTableView,
 		isSummaryView: state.viewControl.isSummaryView,
+		isCASModalView: state.viewControl.isCASModalView,
 		singleBlockViewProps: state.singleBlockViewProps,
 		/*blocksPositionArr:blocksPositionArr*/
 	}
@@ -53,6 +54,9 @@ const mapDispatchToProps = (dispatch) =>{
 		},
 		setRecordResult: (input) => {
 			dispatch(actions.setRecordResult(input));
+		},
+		changeCASModalView: ()=>{
+			dispatch(actions.isCASModalView());
 		}
 	}
 };

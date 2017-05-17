@@ -4,11 +4,14 @@ export const ISFULLPAGETABLEVIEW = 'ISFULLPAGETABLEVIEW';
 export const ISSUMMARYVIEW = 'ISSUMMARYVIEW';
 export const ISHEADERHIDDEN = 'ISHEADERHIDDEN';
 export const ISSOINFOHIDDEN = 'ISSOINFOHIDDEN';
+export const ISCASMODALVIEW = 'ISCASMODALVIEW';
+
 export const SET_SINGLEBLOCKVIEWPOSITION = 'SET_SINGLEBLOCKVIEWPOSITION';
 export const SET_CURRENTBLOCKPOSITION = 'SET_CURRENTBLOCKPOSITION';
 export const SET_BLOCKSPOSITIONARR = 'SET_BLOCKSPOSITIONARR';
 // export const SET_BLOCKBOOLBUTTON = 'SET_BLOCKBOOLBUTTON';
 export const SET_RECORDRESULT = 'SET_RECORDRESULT';
+
 
 
 export function addNum(input) {
@@ -27,6 +30,12 @@ export function isFullPageTableView(){
 export function isSummaryView(){
 	return {
 		type: ISSUMMARYVIEW
+	}
+}
+
+export function isCASModalView(){
+	return {
+		type: ISCASMODALVIEW
 	}
 }
 

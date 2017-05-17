@@ -1,5 +1,5 @@
 import React from 'react';
-import {FullPageTable, SingleBlockView, SummaryView} from '../components';
+import {FullPageTable, SingleBlockView, SummaryView, CASModal} from '../components';
 import {Button} from 'react-bootstrap';
 import {cloneDeep} from 'lodash';
 
@@ -28,19 +28,28 @@ class Table extends React.Component{
 	handleClick(event){
 		if(event.target.tagName !== 'BUTTON') return;
 		let eventProp = event.target.id.split('_');
-		if(eventProp[0]==='boolButton'){
-			// 0 = type
+		let {blocks, setRecordResult, changeCASModalView} = this.props;
+		if(eventProp[3] !== 'CAS' && (eventProp[0]==='boolButton' || eventProp[0] === 'multiButton')){
+			// 0 = button type
 			// 1 = blocks_id
 			// 2 = record_process index
-			// 3 = bool result
-			let {blocks, setRecordResult} = this.props;
+			// 3 = bool or string result
 			let nextBlock = cloneDeep(blocks[eventProp[1]]);
-			nextBlock.process_record[eventProp[2]].result = (eventProp[3] == 'true');
+			let result;
+			if(eventProp[0]==='boolButton') {
+				result = (eventProp[3] == 'true');
+			}else{
+				result = eventProp[3];
+			}
+			nextBlock.process_record[eventProp[2]].result = result;
 			setRecordResult({
 				index: parseInt(eventProp[1]),
 				data: nextBlock
 			})
+		}else if(eventProp[3] === 'CAS'){
+			changeCASModalView();
 		}
+
 		event.stopPropagation();
 	}
 
@@ -53,8 +62,10 @@ class Table extends React.Component{
 			 singleBlockViewProps,
 			 changeCurrentBlock,
 			 isSummaryView,
+			 isCASModalView,
 			 changeSummaryView,
-			 setRecordResult} = this.props;
+			 setRecordResult,
+			 changeCASModalView} = this.props;
 		return (
 			<div onBlur={(event)=>this.updateText(event)}
 				 onClick={(event)=>this.handleClick(event)}>
@@ -81,6 +92,8 @@ class Table extends React.Component{
 									  				   singleBlockViewProps={singleBlockViewProps}
 									  				   changeCurrentBlock={changeCurrentBlock}
 									  				   setRecordResult={setRecordResult}/>}
+				<CASModal show={isCASModalView} 
+						  changeCASModalView={changeCASModalView}/>
 			</div>
 		)
 	}

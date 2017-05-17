@@ -3,50 +3,37 @@ import {Button} from 'react-bootstrap';
 
 class FullPageTableRow extends React.Component{
 
-	// constructor(props){
-	// 	super(props);
-	// 	let cols = [];
-	// 	this.props.blocksHeader.map(e=>{
-	// 		// console.log(e.split(' ').join('_').toLowerCase());
-	// 		e = e.split(' ').join('_').toLowerCase();
-	// 		if(this.props.block.hasOwnProperty(e)){
-	// 			cols.push(this.props.block[e])
-	// 		}
-	// 		return;
-	// 	})
-	// 	// console.log(JSON.stringify(cols))
-	// 	this.state = ({
-	// 		cols:[]
-	// 	})
-	// }
-
 	renderProcess(pr){
 		let {block} = this.props;
 		let output = [];
-		pr.map((b, bIndex)=>{
-			if(b.type==='bool_button'){
+		pr.map((pr, prIndex)=>{
+			if(pr.type==='bool_button'){
 				output = (
 					<div>
 					<Button bsSize="xsmall"
-							id={'boolButton_'+block.blocks_id+'_'+bIndex+'_true'}
-							active={b.result===undefined?false:
-									b.result?true:false}>{b.bool_option.true}</Button>
+							id={'boolButton_'+block.blocks_id+'_'+prIndex+'_true'}
+							active={pr.result===undefined?false:
+									pr.result?true:false}>{pr.bool_option.true}</Button>
 					<Button bsSize="xsmall"
-							id={'boolButton_'+block.blocks_id+'_'+bIndex+'_false'}
-							active={b.result===undefined?false:
-									b.result?false:true}>{b.bool_option.false}</Button>
+							id={'boolButton_'+block.blocks_id+'_'+prIndex+'_false'}
+							active={pr.result===undefined?false:
+									pr.result?false:true}>{pr.bool_option.false}</Button>
 					</div>
 				)
-			}else if(b.type ==='input'){
+			}else if(pr.type ==='input'){
 				output = (
 					<div>
-						{b.des}: <input id={'input_'+block.blocks_id+'_'+bIndex} defaultValue={b.result}/>
+						{pr.des}: <input id={'input_'+block.blocks_id+'_'+prIndex} defaultValue={pr.result}/>
 					</div>
 				)
-			}else if(b.type === 'multi_button'){
-				b.option.map((button,bIndex)=>{
+			}else if(pr.type === 'multi_button'){
+				pr.option.map((button,bIndex)=>{
 					output.push(
-						<Button key={bIndex} bsSize="xsmall">{button}</Button>
+						<Button key={bIndex} 
+								id={'multiButton_'+block.blocks_id+'_'+prIndex+'_'+button}
+								bsSize="xsmall">
+							{button}
+						</Button>
 					)
 					return;
 				})
@@ -61,7 +48,6 @@ class FullPageTableRow extends React.Component{
 		return (
 			<tr>
 				<td>{block.description}</td>
-				{/*<td>{block.action}</td>*/}
 				<td>{this.renderProcess(block.process_record)}
 				</td>
 				<td><input/></td>
@@ -72,13 +58,3 @@ class FullPageTableRow extends React.Component{
 }
 
 export default FullPageTableRow;
-
-
-					// <Button bsSize="xsmall"
-					// 		onClick={(e)=>this.clickBoolButton(e, 0, true)} 
-					// 		active={block.process_record[0].result===undefined?false:
-					// 				block.process_record[0].result?true:false}>{block.process_record[0].bool_option.true}</Button>
-					// <Button bsSize="xsmall"
-					// 		onClick={(e)=>this.clickBoolButton(e, 0, false)}
-					// 		active={block.process_record[0].result===undefined?false:
-					// 				block.process_record[0].result?false:true}>{block.process_record[0].bool_option.false}</Button>

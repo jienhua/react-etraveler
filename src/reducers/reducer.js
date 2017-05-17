@@ -5,11 +5,12 @@ import {cloneDeep} from 'lodash';
 
 
 function traveler (state={}, action){
+	let nextState;
+	nextState = cloneDeep(state);
 	switch(action.type){
 		case actions.SET_ISCOMPLETE:
-			return Object.assign({}, state,{
-				isComplete: !state.isComplete
-			})
+			nextState.isComplete = !nextState.isComplete;
+			return nextState;
 		default: return state;
 	}
 }
@@ -27,6 +28,8 @@ function traveler_template(state={}, action){
 }
 
 function record_blocks(state=[], action){
+	let nextState;
+	nextState = state.slice();
 	switch(action.type){
 		// case actions.SET_BLOCKBOOLBUTTON:
 		// 	let temp = state.slice();
@@ -37,8 +40,7 @@ function record_blocks(state=[], action){
 		// 		return item;
 		// 	})
 		case actions.SET_RECORDRESULT:
-			let temp = state.slice();
-			return temp.map((item, index)=>{
+			return nextState.map((item, index)=>{
 				if(item.blocks_id === action.input.index){
 					return action.input.data;
 				}
@@ -49,13 +51,13 @@ function record_blocks(state=[], action){
 }
 
 function singleBlockViewProps(state={}, action){
+	let nextState;
+	nextState = cloneDeep(state);
 	switch(action.type){
 		case actions.SET_CURRENTBLOCKPOSITION:
-			let nextState = cloneDeep(state);
 			nextState.currentPosition = action.input;
 			return nextState;
 		case actions.SET_BLOCKSPOSITIONARR:
-			nextState = cloneDeep(state);
 			nextState.blocksPositionArr = action.arr;
 			return nextState;
 		default: return state;
@@ -63,23 +65,24 @@ function singleBlockViewProps(state={}, action){
 }
 
 function viewControl(state={}, action){
+	let nextState;
+	nextState = cloneDeep(state);
 	switch(action.type){
 		case actions.ISFULLPAGETABLEVIEW:
-			return Object.assign({}, state, {
-				isFullPageTableView: !state.isFullPageTableView
-			})
+			nextState.isFullPageTableView = !nextState.isFullPageTableView;
+			return nextState;
 		case actions.ISSUMMARYVIEW:
-			return Object.assign({}, state, {
-				isSummaryView: !state.isSummaryView
-			})
+			nextState.isSummaryView = !nextState.isSummaryView;
+			return nextState;
 		case actions.ISSOINFOHIDDEN:
-			return Object.assign({}, state, {
-				isSOInfoHidden: !state.isSOInfoHidden
-			})
+			nextState.isSOInfoHidden = !nextState.isSOInfoHidden;
+			return nextState;
 		case actions.ISHEADERHIDDEN:
-			return Object.assign({}, state, {
-				isHeaderHidden: !state.isHeaderHidden
-			})
+			nextState.isHeaderHidden = !nextState.isHeaderHidden;
+			return nextState;
+		case actions.ISCASMODALVIEW:
+			nextState.isCASModalView = !nextState.isCASModalView;
+			return nextState;
 		default: return state;
 	}
 }
