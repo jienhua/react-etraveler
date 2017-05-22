@@ -10,14 +10,14 @@ export default ({
 		]
 	},
 	"viewControl":{
-		"isFullPageTableView": false,
+		"isFullPageTableView": true,
 		"isSummaryView": false,
 		"isHeaderHidden": true,
 		"isSOInfoHidden": true,
 		"isCASModalView": false
 	},
 	"singleBlockViewProps":{
-		"currentPosition": 11,
+		"currentPosition": 0,
 		//help to find the postion of the block
 		// from using ex.[2,3]
 		//"blocksPositionArr":[]
@@ -27,9 +27,10 @@ export default ({
 		"serial_num":"D1646B03816",
 		"traveler_template_id": 0,
 		"isComplete":false,
-		"reviewBy": "",
-		"reviewDate": "",
-		"status": "inComplete"
+		"review_by": "",
+		"review_date": "",
+		"status": "inComplete",
+		"analysis_process_note": ''
 	}
 	,
 	"sales_order_info":{
@@ -46,39 +47,62 @@ export default ({
 				"objects":[
 					{
 						"description": "RMA Verification Process",
-						"blocks": [0,1]
+						"blocks": [18,0,1]
 					},
 					{
 						"description": "Power On to test all Ethernet LEDs on then off",
-						"blocks": [2]
+						"blocks": [19,2]
 					},
 					{
 						"description": "LED Check",
 						"blocks": [3]
 					},
 					{
-						"description":"Power On to test all Ethernet LEDs on then off",
-						"blocks": [4]
-					},
-					{
 						"description":"FAN verification:",
 						"blocks": [5,6, 7]
-					},
-					{
-						"description":"BOOT UP Verification",
-						"blocks": [11, 8, 12]
 					},
 					{
 						"description":"Console Signal Verification",
 						"blocks": [9]
 					},
 					{
-						"description":"SSD",
-						"blocks":[13, 10, 14]
+						"description":"BOOT UP Verification",
+						"blocks": [11, 8, 12]
+					},
+					{
+						"description":"SSD Verification",
+						"blocks":[13, 14, 10]
 					},
 					{
 						"description":"DIMM Memory Verification",
 						"blocks":[15, 16]
+					}
+				]
+			},
+			{
+				"station": 2,
+				"objects":[
+					{
+						"description": "After repair / replacement, perform PAN requirement test",
+						"blocks":[20, 21, 22,23, 24,25,26, 27,28,29,30,31,32,33,34]
+					}
+				]
+			},
+			{
+				"station": 3,
+				"objects":[
+					{
+						"description": "Refurbishing Process",
+						"blocks": [35]
+					}
+				]
+			},
+			{
+				"station": 4,
+				"objects":[
+					{
+						"description": "Capture Log",
+						"blocks": [36]
 					}
 				]
 			},
@@ -102,214 +126,213 @@ export default ({
 			"blocks_id": 0,
 			"description": "Top Cover",
 			"action":"Scan Good or Scratch",
-			"error":"Replace Top Cover",
+			"action_type":"Disposition",
 			"process_record": [
 				{
-					"type": "bool_button",
-					"bool_option":{
-						"true": "Yes",
-						"false": "No"
+					"type": "multi_button",
+					"option":[
+						"Yes",
+						"No"
+					],
+					"error_options":{
+						"No": "Replace Top Cover"
 					},
-					"action_type":"Disposition",
 					"result": undefined,
-					"check_box":true
 				}
 			],
 			"responsible": "",
 			"date": "type is date",
 			"edit": "type is date",
-			"history": [2]
+			"history": []
 		},
 		{
 			"traveler_id": 0,
 			"blocks_id": 1,
 			"description": "Bottom Chassis",
 			"action":"Scan Good or Scratch",
-			"error":"Replace bottom chassis",
+			"action_type":"Disposition",
 			"process_record": [
 				{
-					"type": "bool_button",
-					"bool_option":{
-						"true": "Yes",
-						"false": "No"
+					"type": "multi_button",
+					"option":[
+						"Yes",
+						"No"
+					],
+					"error_options":{
+						"No": "Replace bottom chassis"
 					},
-					"action_type":"Disposition",
 					"result": undefined,
-					"check_box":true
 				}
 			],
 			"responsible": "",
 			"date": "type is date",
 			"edit": "type is date",
-			"history": [2]
+			"history": []
 		},
 		{
 			"traveler_id": 0,
 			"blocks_id": 2,
 			"description": "Check Power Adapter on and lit solid green",
 			"action":"Scan Passed or Failed > PSU type > UL version > SN > 0 Volt or Fluctuating Voltage",
-			"error":"PSU not returned or 0 Volt or Fluctuating Voltage",
+			"action_type":"Analysis Process Note",
 			"process_record": [
 				{
-					"type": "bool_button",
-					"bool_option":{
-						"true": "Yes",
-						"false": "No"
+					"type": "multi_button",
+					"option":[
+						"Passed",
+						"Failure 0V",
+						"Fluctuation"
+					],
+					"error_options":{
+						"Failure 0V": "Failure 0V",
+						"Fluctuation": "Fluctuation Voltage"
 					},
-					"action_type":"Analysis Process Note",
 					"result": undefined,
-					"check_box":true
+				},
+				{
+					"type": "input",
+					"des": "PSU Type",
+					"result": undefined,
+				},
+				{
+					"type": "input",
+					"des": "UL Ver.",
+					"result": undefined,
+				},
+				{
+					"type": "input",
+					"des": "SN",
+					"result": undefined,
 				}
 			],
 			"responsible": "",
 			"date": "type is date",
 			"edit": "type is date",
-			"history": [2]
+			"history": []
 		},
 		{
 			"traveler_id": 0,
 			"blocks_id": 3,
 			"description": "Verify Power On and PWR LED lit green",
 			"action":"Scan Passed or Failed or RTV or 2nd RTV or CAS",
-			"error":"",
+			"action_type":"Analysis Process Note",
 			"process_record": [
 				{
-					"type": "bool_button",
-					"bool_option":{
-						"true": "Yes",
-						"false": "No"
-					},
-					"action_type":"Analysis Process Note",
+					"type": "multi_button",
+					"option":[
+						"Yes",
+						"No"
+					],
 					"result": undefined,
-					"check_box":true
 				}
 			],
 			"responsible": "",
 			"date": "type is date",
 			"edit": "type is date",
-			"history": [2]
-		},
-		{
-			"traveler_id": 0,
-			"blocks_id": 4,
-			"description": "Check Power Adapter ON and lit solid green",
-			"action":"Scan Passed or Failed > PSU type > UL version > SN > 0 Volt or Fluctuating Voltage",
-			"error":"Defective PSU output 0 Volt or fluctuating voltage",
-			"process_record": [
-				{
-					"type": "bool_button",
-					"bool_option":{
-						"true": "Yes",
-						"false": "No"
-					},
-					"action_type":"Analysis Process Note",
-					"result": undefined,
-					"check_box":true
-				}
-			],
-			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
-			"history": [2]
+			"history": []
 		},
 		{
 			"traveler_id": 0,
 			"blocks_id": 5,
 			"description": "Verify Fan older than 1 years or not",
 			"action":"Scan Yes or No",
-			"error":"Replace 1 year Fan",
+			"action_type":"Disposition",
 			"process_record": [
 				{
-					"type": "bool_button",
-					"bool_option":{
-						"true": "Yes",
-						"false": "No"
+					"type": "multi_button",
+					"option":[
+						"Yes",
+						"No"
+					],
+					"error_options":{
+						"No": "Replace 1 year Fan"
 					},
-					"action_type":"Disposition",
 					"result": undefined,
-					"check_box":true
 				}
 			],
 			"responsible": "",
 			"date": "type is date",
 			"edit": "type is date",
-			"history": [2]
+			"history": []
 		},
 		{
 			"traveler_id": 0,
 			"blocks_id": 6,
 			"description": "Defective Fan",
 			"action":"...",
-			"error":"Replace Defective Fan",
+			"action_type":"Disposition",
 			"process_record": [
 				{
-					"type": "bool_button",
-					"bool_option":{
-						"true": "Yes",
-						"false": "No"
+					"type": "multi_button",
+					"option":[
+						"Yes",
+						"No"
+					],
+					"error_options":{
+						"No": "Replace Defective Fan"
 					},
-					"action_type":"Disposition",
 					"result": undefined,
-					"check_box":true
 				}
 			],
 			"responsible": "",
 			"date": "type is date",
 			"edit": "type is date",
-			"history": [2]
+			"history": []
 		},
 		{
 			"traveler_id": 0,
 			"blocks_id": 7,
 			"description": "Dusty Fan",
 			"action":"...",
-			"error":"Replace Dusty Fan",
+			"action_type":"Disposition",
 			"process_record": [
 				{
-					"type": "bool_button",
-					"bool_option":{
-						"true": "Yes",
-						"false": "No"
+					"type": "multi_button",
+					"option":[
+						"Yes",
+						"No"
+					],
+					"error_options":{
+						"No": "Replace Dusty Fan"
 					},
-					"action_type":"Disposition",
 					"result": undefined,
-					"check_box":true
 				}
 			],
 			"responsible": "",
 			"date": "type is date",
 			"edit": "type is date",
-			"history": [2]
+			"history": []
 		},
 		{
 			"traveler_id": 0,
 			"blocks_id": 8,
 			"description": "Avaliable MAC Address",
 			"action":"Scan Yes or No",
-			"error":"No avaliable MAC address error.",
+			"action_type":"Disposition",
 			"process_record": [
 				{
-					"type": "bool_button",
-					"bool_option":{
-						"true": "Yes",
-						"false": "No"
+					"type": "multi_button",
+					"option":[
+						"Yes",
+						"No"
+					],
+					"error_options":{
+						"No": "No avaliable MAC address error"
 					},
-					"action_type":"Disposition",
 					"result": undefined,
-					"check_box":true
 				}
 			],
 			"responsible": "",
 			"date": "type is date",
 			"edit": "type is date",
-			"history": [2]
+			"history": []
 		},
 		{
 			"traveler_id": 0,
 			"blocks_id": 9,
 			"description": "Verify Console accepting keyboard input in Putty",
 			"action":"Scan Yes or No",
-			"error":"",
+			"action_type":"Disposition",
 			"process_record": [
 				{
 					"type": "multi_button",
@@ -320,21 +343,20 @@ export default ({
 						"2ndTRV",
 						"CAS"
 					],
-					"action_type":"Disposition",
 					"result": undefined,
 				}
 			],
 			"responsible": "",
 			"date": "type is date",
 			"edit": "type is date",
-			"history": [2]
+			"history": []
 		},
 		{
 			"traveler_id": 0,
 			"blocks_id": 10,
 			"description": "SSD 150 Drive",
 			"action":"...",
-			"error":"",
+			"action_type":"Disposition",
 			"process_record": [
 				{
 					"type": "multi_button",
@@ -343,135 +365,127 @@ export default ({
 						"Black",
 						"No"
 					],
-					"action_type":"Disposition",
 					"result": undefined,
 				}
 			],
 			"responsible": "",
 			"date": "type is date",
 			"edit": "type is date",
-			"history": [2]
+			"history": []
 		},
 		{
 			"traveler_id": 0,
 			"blocks_id": 11,
 			"description": "Uboot version",
 			"action":"...",
-			"error":"",
+			"action_type":"Disposition",
 			"process_record": [
 				{
 					"type": "input",
 					"des": "Uboot version",
-					"action_type":"Disposition",
 					"result": undefined,
 				}
 			],
 			"responsible": "",
 			"date": "type is date",
 			"edit": "type is date",
-			"history": [2]
+			"history": []
 		},
 		{
 			"traveler_id": 0,
 			"blocks_id": 12,
 			"description": "OS version",
 			"action":"...",
-			"error":"",
+			"action_type":"Disposition",
 			"process_record": [
 				{
 					"type": "input",
 					"des": "OS version",
-					"action_type":"Disposition",
 					"result": undefined,
 				}
 			],
 			"responsible": "",
 			"date": "type is date",
 			"edit": "type is date",
-			"history": [2]
+			"history": []
 		},
 		{
 			"traveler_id": 0,
 			"blocks_id": 13,
 			"description": "SSD Model",
 			"action":"...",
-			"error":"",
+			"action_type":"Disposition",
 			"process_record": [
 				{
 					"type": "input",
 					"des": "SSD MPN",
-					"action_type":"Disposition",
 					"result": undefined,
 				}
 			],
 			"responsible": "",
 			"date": "type is date",
 			"edit": "type is date",
-			"history": [2]
+			"history": []
 		},
 		{
 			"traveler_id": 0,
 			"blocks_id": 14,
 			"description": "SSD Model Serial Number",
 			"action":"...",
-			"error":"",
+			"action_type":"Disposition",
 			"process_record": [
 				{
 					"type": "input",
 					"des": "SSD SN",
-					"action_type":"Disposition",
 					"result": undefined,
 				}
 			],
 			"responsible": "",
 			"date": "type is date",
 			"edit": "type is date",
-			"history": [2]
+			"history": []
 		},
 		{
 			"traveler_id": 0,
 			"blocks_id": 15,
 			"description": "DIMM Memory Model",
 			"action":"...",
-			"error":"",
+			"action_type":"Disposition",
 			"process_record": [
 				{
 					"type": "input",
 					"des": "DIMM MPN",
-					"action_type":"Disposition",
 					"result": undefined,
 				}
 			],
 			"responsible": "",
 			"date": "type is date",
 			"edit": "type is date",
-			"history": [2]
+			"history": []
 		},
 		{
 			"traveler_id": 0,
 			"blocks_id": 16,
 			"description": "DIMM Memory Model Serial Number",
 			"action":"...",
-			"error":"",
+			"action_type":"Disposition",
 			"process_record": [
 				{
 					"type": "input",
 					"des": "DIMM SN SN",
-					"action_type":"Disposition",
 					"result": undefined,
 				}
 			],
 			"responsible": "",
 			"date": "type is date",
 			"edit": "type is date",
-			"history": [2]
+			"history": []
 		},
 		{
 			"traveler_id": 0,
 			"blocks_id": 17,
 			"description": "Packing",
 			"action":"...",
-			"error":"",
 			"process_record": [
 				{
 					"type": "input",
@@ -487,7 +501,425 @@ export default ({
 			"responsible": "",
 			"date": "type is date",
 			"edit": "type is date",
-			"history": [2]
+			"history": []
+		},
+		{
+			"traveler_id": 0,
+			"blocks_id": 18,
+			"description": "Warranty Label",
+			"action_type":"Analysis Process Note",
+			"process_record": [
+				{
+					"type": "multi_button",
+					"option":[
+						"Yes",
+						"No"
+					],
+					"error_options":{
+						"No": "Missing Warranty Label"
+					},
+					"result": undefined,
+				}
+			],
+			"responsible": "",
+			"date": "type is date",
+			"edit": "type is date",
+			"history": []
+		},
+		{
+			"traveler_id": 0,
+			"blocks_id": 19,
+			"description": "PSU returned?",
+			"action_type":"Analysis Process Note",
+			"process_record": [
+				{
+					"type": "multi_button",
+					"option":[
+						"Yes",
+						"No"
+					],
+					"error_options":{
+						"No": "Customer did not return PSU"
+					},
+					"result": undefined,
+				}
+			],
+			"responsible": "",
+			"date": "type is date",
+			"edit": "type is date",
+			"history": []
+		},
+		{
+			"traveler_id": 0,
+			"blocks_id": 20,
+			"description": "Reload CastWell U-Boot for testing",
+			"action":"...",
+			"action_type":"Disposition",
+			"process_record": [
+				{
+					"type": "multi_button",
+					"option":[
+						"Passed",
+						"Failed",
+						"RTV",
+						"2ndTRV",
+						"CAS"
+					],
+					"result": undefined,
+				}
+			],
+			"responsible": "",
+			"date": "type is date",
+			"edit": "type is date",
+			"history": []
+		},
+		{
+			"traveler_id": 0,
+			"blocks_id": 21,
+			"description": "Verify CVER 3.2.3 Burn In Test 12 hours",
+			"action":"...",
+			"action_type":"Disposition",
+			"process_record": [
+				{
+					"type": "multi_button",
+					"option":[
+						"Passed",
+						"Failed",
+						"RTV",
+						"2ndTRV",
+						"CAS"
+					],
+					"result": undefined,
+				}
+			],
+			"responsible": "",
+			"date": "type is date",
+			"edit": "type is date",
+			"history": []
+		},
+		{
+			"traveler_id": 0,
+			"blocks_id": 22,
+			"description": "Perform DOD Wipeout (SSD)",
+			"action":"...",
+			"action_type":"Disposition",
+			"process_record": [
+				{
+					"type": "multi_button",
+					"option":[
+						"Passed",
+						"Failed"
+					],
+					"error_options":{
+						"Failed": "SSD failed DOD with duplicator"
+					},
+					"result": undefined,
+				}
+			],
+			"responsible": "",
+			"date": "type is date",
+			"edit": "type is date",
+			"history": []
+		},
+		{
+			"traveler_id": 0,
+			"blocks_id": 23,
+			"description": "Cloning PAN OS 7.1.5 (SSD)",
+			"action":"...",
+			"action_type":"Disposition",
+			"process_record": [
+				{
+					"type": "multi_button",
+					"option":[
+						"Passed",
+						"Failed"
+					],
+					"error_options":{
+						"Failed": "SSD failed Copy and Compare with duplicator"
+					},
+					"result": undefined,
+				}
+			],
+			"responsible": "",
+			"date": "type is date",
+			"edit": "type is date",
+			"history": []
+		},
+		{
+			"traveler_id": 0,
+			"blocks_id": 24,
+			"description": "Replace SSD",
+			"action":"...",
+			"action_type":"Disposition",
+			"process_record": [
+				{
+					"type": "replaceInput",
+					"des": "Old SSD SN",
+					"result": undefined,
+				},
+				{
+					"type": "replaceInput",
+					"des": "New SSD SN",
+					"result": undefined,
+				}
+			],
+			"responsible": "",
+			"date": "type is date",
+			"edit": "type is date",
+			"history": []
+		},
+		{
+			"traveler_id": 0,
+			"blocks_id": 25,
+			"description": "Drive Model installed",
+			"action":"...",
+			"process_record": [
+				{
+					"type": "input",
+					"des": "MPN",
+					"result": undefined,
+				}
+			],
+			"responsible": "",
+			"date": "type is date",
+			"edit": "type is date",
+			"history": []
+		},
+		{
+			"traveler_id": 0,
+			"blocks_id": 26,
+			"description": "Drive Serial Number installed",
+			"action":"...",
+			"process_record": [
+				{
+					"type": "input",
+					"des": "SN",
+					"result": undefined,
+				}
+			],
+			"responsible": "",
+			"date": "type is date",
+			"edit": "type is date",
+			"history": []
+		},
+		{
+			"traveler_id": 0,
+			"blocks_id": 27,
+			"description": "Reflash U-Boot 7.1.5 and reimage PAN OS 7.1.5",
+			"action":"...",
+			"action_type":"Disposition",
+			"process_record": [
+				{
+					"type": "multi_button",
+					"option":[
+						"Yes",
+						"No"
+					],
+					"error_options":{
+						"No": "Reflash U-Boot 7.1.5 and reimage PAN OS 7.1.5"
+					},
+					"result": undefined,
+				}
+			],
+			"responsible": "",
+			"date": "type is date",
+			"edit": "type is date",
+			"history": []
+		},
+		{
+			"traveler_id": 0,
+			"blocks_id": 28,
+			"description": "DIMM test result",
+			"action":"...",
+			"action_type":"Analysis Process Note",
+			"process_record": [
+				{
+					"type": "multi_button",
+					"option":[
+						"Passed",
+						"Failed"
+					],
+					"error_options":{
+						"Failed":"DIMM confirmed defective with a known good system"
+					},
+					"result": undefined,
+				}
+			],
+			"responsible": "",
+			"date": "type is date",
+			"edit": "type is date",
+			"history": []
+		},
+		{
+			"traveler_id": 0,
+			"blocks_id": 29,
+			"description": "Supertalent DIMM",
+			"action":"...",
+			"action_type":"Disposition",
+			"process_record": [
+				{
+					"type": "replaceInput",
+					"des": "Old DIMM SN",
+					"result": undefined,
+				},
+				{
+					"type": "replaceInput",
+					"des": "New DIMM SN",
+					"result": undefined,
+				}
+			],
+			"responsible": "",
+			"date": "type is date",
+			"edit": "type is date",
+			"history": []
+		},
+		{
+			"traveler_id": 0,
+			"blocks_id": 30,
+			"description": "Replace DIMM",
+			"action":"...",
+			"action_type":"Disposition",
+			"process_record": [
+				{
+					"type": "replaceInput",
+					"des": "Old DIMM SN",
+					"result": undefined,
+				},
+				{
+					"type": "replaceInput",
+					"des": "New DIMM SN",
+					"result": undefined,
+				}
+			],
+			"responsible": "",
+			"date": "type is date",
+			"edit": "type is date",
+			"history": []
+		},
+		{
+			"traveler_id": 0,
+			"blocks_id": 31,
+			"description": "Installed DIMM Model",
+			"action":"...",
+			"process_record": [
+				{
+					"type": "input",
+					"des": "MPN",
+					"result": undefined,
+				}
+			],
+			"responsible": "",
+			"date": "type is date",
+			"edit": "type is date",
+			"history": []
+		},
+		{
+			"traveler_id": 0,
+			"blocks_id": 32,
+			"description": "Installed DIMM Serial Number",
+			"action":"...",
+			"process_record": [
+				{
+					"type": "input",
+					"des": "SN",
+					"result": undefined,
+				}
+			],
+			"responsible": "",
+			"date": "type is date",
+			"edit": "type is date",
+			"history": []
+		},
+		{
+			"traveler_id": 0,
+			"blocks_id": 33,
+			"description": "Verify MGT and NIC ports",
+			"action":"...",
+			"action_type":"Disposition",
+			"process_record": [
+				{
+					"type": "multi_button",
+					"option":[
+						"Passed",
+						"Failed",
+						"RTV",
+						"2ndTRV",
+						"CAS"
+					],
+					"result": undefined,
+				}
+			],
+			"responsible": "",
+			"date": "type is date",
+			"edit": "type is date",
+			"history": []
+		},
+		{
+			"traveler_id": 0,
+			"blocks_id": 34,
+			"description": "Verify Power, Status, Fan, Temp, HA and Alarm LEDs",
+			"action":"...",
+			"action_type":"Disposition",
+			"process_record": [
+				{
+					"type": "multi_button",
+					"option":[
+						"Passed",
+						"Failed",
+						"RTV",
+						"2ndTRV",
+						"CAS"
+					],
+					"result": undefined,
+				}
+			],
+			"responsible": "",
+			"date": "type is date",
+			"edit": "type is date",
+			"history": []
+		},
+		{
+			"traveler_id": 0,
+			"blocks_id": 35,
+			"description": "Replace SSD",
+			"action":"...",
+			"process_record": [
+				{
+					"type": "input",
+					"des": "MAC Address",
+					"result": undefined,
+				},
+				{
+					"type": "input",
+					"des": "Internal Green SN",
+					"result": undefined,
+				}
+			],
+			"responsible": "",
+			"date": "type is date",
+			"edit": "type is date",
+			"history": []
+		},
+		{
+			"traveler_id": 0,
+			"blocks_id": 36,
+			"description": "Capture Log",
+			"action":"...",
+			"action_type":"Disposition",
+			"process_record": [
+				{
+					"type": "multi_button",
+					"option":[
+						"Done",
+						"No"
+					],
+					"result": undefined,
+				}
+			],
+			"responsible": "",
+			"date": "type is date",
+			"edit": "type is date",
+			"history": []
 		}
 	],
 	// "history":[

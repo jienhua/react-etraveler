@@ -1,17 +1,6 @@
 import React from 'react';
 import {BlockView} from '../../components';
 import {ButtonToolbar, Button, ButtonGroup} from 'react-bootstrap';
-// const hiddeStyle = (index, currShowIndex) =>{
-// 	let display = "";
-// 	if(index !== currShowIndex){
-// 		display = 'none';
-// 	}
-// 	return {
-// 		display: display,
-// 		border:'solid'
-// 	}
-// }
-
 
 class SingleBlockView extends React.Component {
 
@@ -39,20 +28,6 @@ class SingleBlockView extends React.Component {
 			changeCurrentBlock(parseInt(input.target.id));
 		}
 	}
-
-	// onBlur(event){
-	// 	let {setRecordResult, singleBlockViewProps, blocks} = this.props;
-	// 	let eventID = event.target.id.split('_'),
-	// 		block_id = eventID[1],
-	// 		type = eventID[0],
-	// 		process_record_index = eventID[2];
-	// 	if(type === 'input'){
-	// 		let nextBlock = Object.assign({}, blocks[block_id]);
-	// 		nextBlock.process_record[process_record_index].result = event.target.value;
-			
-	// 	}
-	// 	event.stopPropagation();
-	// }
 
 	render() {
 		let {blueprint, blocks, blocksHeader, singleBlockViewProps,/*blocksPositionArr*/
@@ -95,7 +70,6 @@ class SingleBlockView extends React.Component {
 						}
 					</ButtonGroup>
 				</ButtonToolbar>
-				{/*<span style={{float:'right', marginRight:'20px', paddingTop:'3px'}}><b>Station: </b></span>*/}
 				<div style={{clear:'both'}}></div>
 				{
 					blueprint.map((station, sIndex)=>{
@@ -104,6 +78,7 @@ class SingleBlockView extends React.Component {
 							o.blocks.map((b,bIndex)=>{
 								output.push(
 									<BlockView key={blocks[b].blocks_id} 
+										 stationID={station.station}
 										 id={index}
 										 statePosition={bIndex}
 										 hidden={{index:index, currentPosition:singleBlockViewProps.currentPosition}}

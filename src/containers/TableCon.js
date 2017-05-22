@@ -34,7 +34,7 @@ const mapStateToProps = ( state ) =>{
 		isSummaryView: state.viewControl.isSummaryView,
 		isCASModalView: state.viewControl.isCASModalView,
 		singleBlockViewProps: state.singleBlockViewProps,
-		/*blocksPositionArr:blocksPositionArr*/
+		analysis_process_note: state.traveler.analysis_process_note
 	}
 };
 
@@ -57,6 +57,9 @@ const mapDispatchToProps = (dispatch) =>{
 		},
 		changeCASModalView: ()=>{
 			dispatch(actions.isCASModalView());
+		},
+		setAnalysisProcessNote: (input)=>{
+			dispatch(actions.setAnalysisProcessNote(input));
 		}
 	}
 };

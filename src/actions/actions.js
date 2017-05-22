@@ -9,9 +9,8 @@ export const ISCASMODALVIEW = 'ISCASMODALVIEW';
 export const SET_SINGLEBLOCKVIEWPOSITION = 'SET_SINGLEBLOCKVIEWPOSITION';
 export const SET_CURRENTBLOCKPOSITION = 'SET_CURRENTBLOCKPOSITION';
 export const SET_BLOCKSPOSITIONARR = 'SET_BLOCKSPOSITIONARR';
-// export const SET_BLOCKBOOLBUTTON = 'SET_BLOCKBOOLBUTTON';
 export const SET_RECORDRESULT = 'SET_RECORDRESULT';
-
+export const SET_ANALYSISPROCESSNOTE = 'SET_ANALYSISPROCESSNOTE';
 
 
 export function addNum(input) {
@@ -78,16 +77,16 @@ export function setBlocksPositionArr(arr){
 	}
 }
 
-// export function setBlockBoolButton(input){
-// 	return {
-// 		type: SET_BLOCKBOOLBUTTON,
-// 		input
-// 	}
-// }
-
 export function setRecordResult(input){
 	return{
 		type: SET_RECORDRESULT,
+		input
+	}
+}
+
+export function setAnalysisProcessNote(input){
+	return {
+		type: SET_ANALYSISPROCESSNOTE,
 		input
 	}
 }

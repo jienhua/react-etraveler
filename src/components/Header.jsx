@@ -1,23 +1,19 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
+import {Button, Form, FormGroup, Col, FormControl, ControlLabel } from 'react-bootstrap';
 
 
 class Header extends React.Component{
 
-	// constructor(props){
-	// 	super(props);
-	// 	let temp = [];
-	// 	for(let x in props.traveler){
-	// 		temp.push([x, props.traveler[x]]);
-	// 	}
-
-	// 	this.state = {
-	// 		props: temp
-	// 	}
-	// }
+	modLabel(label){
+		return label.split('_').map(w=>{
+			w = w.split('');
+			let part = w.splice(1);
+			w[0] = w[0].toUpperCase();
+			return w.concat(part).join('');
+		}).join(' ');
+	}
 
 	render() {
-		// let {props} = this.state;
 		let {isHeaderHidden, toggleHeaderView, props, isSummaryView} = this.props;
 		return (
 			<div style={{display:isSummaryView?'none':''}}>
@@ -27,13 +23,20 @@ class Header extends React.Component{
 						   onClick={()=>toggleHeaderView()}>Hidden</Button>
 				</h4>
 				<div style={{display:isHeaderHidden?"none":""}}>
-					{props.map((e,index)=>{
-						return (
-							<div key={index}>
-								{e[0]}:<input defaultValue={e[1]} />
-							</div>
-						)
-					})}
+					<Form horizontal>
+						{props.map((item, index)=>{
+							return (
+									<FormGroup key={index}>
+										<Col sm={2} componentClass={ControlLabel}>
+											{this.modLabel(item[0])}
+										</Col>
+										<Col sm={4}>
+											<FormControl defaultValue={item[1]} />
+										</Col>
+									</FormGroup>	
+							)
+						})}
+					</Form>
 				</div>
 				<hr/>
 			</div>

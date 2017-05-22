@@ -21,11 +21,11 @@ const modHeader = (input) =>{
 class BlockView extends React.Component{
 
 	render(){
-		let {groupHeader, block, hidden, blocksHeader, stationNum, statePosition} = this.props;
+		let {groupHeader, block, hidden, blocksHeader, stationNum, statePosition, stationID} = this.props;
 		
 		return(
 			<div style={hiddeStyle(hidden.index, hidden.currentPosition)}>		
-				<Panel header={groupHeader}>
+				<Panel header={'Station '+stationID+' - '+groupHeader}>
 					<Grid>
 						<Row>
 							<Col sm={6}>
@@ -33,7 +33,8 @@ class BlockView extends React.Component{
 									{blocksHeader.map((e,index)=>{
 										// filter out unwant items
 										if(modHeader(e) === "process_record" ||
-										   modHeader(e) === "error") return;
+										   modHeader(e) === "error" ||
+										   modHeader(e) === "action") return;
 										
 										return (
 											<FormGroup key={index}>
@@ -57,23 +58,7 @@ class BlockView extends React.Component{
 							<Col sm={5}>
 								{block.process_record.map((e, index)=>{
 									let output;
-									if(e.type==='bool_button'){
-										output = (
-											<FormGroup key={index}>
-												<ControlLabel>Option:</ControlLabel>
-												<ButtonToolbar>
-													<ButtonGroup>
-														<Button id={'boolButton_'+block.blocks_id+'_'+index+'_true'}
-																active={e.result===undefined?false:
-																		e.result?true:false}>{e.bool_option.true}</Button>
-														<Button id={'boolButton_'+block.blocks_id+'_'+index+'_false'}
-																active={e.result===undefined?false:
-																	    e.result?false:true}>{e.bool_option.false}</Button>
-													</ButtonGroup>
-												</ButtonToolbar>
-											</FormGroup>
-										)
-									}else if(e.type ==='multi_button'){
+									if(e.type ==='multi_button'){
 
 										output=(
 											<FormGroup key={index}>
@@ -81,17 +66,25 @@ class BlockView extends React.Component{
 												<ButtonToolbar>
 													<ButtonGroup>
 														{e.option.map((item, itemIndex)=>{
-															return <Button key={itemIndex} id={'multiButton_'+block.blocks_id+'_'+index+'_'+item}>{item}</Button>
+															return (
+																<Button key={itemIndex} 
+																		id={'multiButton_'+block.blocks_id+'_'+index+'_'+item}
+																		active={e.result===undefined?false:
+																				e.result === item?true:false}
+																		>
+																	{item}
+																</Button>
+															)
 														})}
 													</ButtonGroup>
 												</ButtonToolbar>
 											</FormGroup>
 										)
-									}else if(e.type ==='input'){
+									}else if(e.type ==='input' || e.type ==='replaceInput'){
 										output = (
 											<FormGroup key={index}>
 												<ControlLabel>{e.des}:</ControlLabel>
-												<FormControl id={'input_'+block.blocks_id+'_'+index} defaultValue={e.result} placeholder={e.des} />
+												<FormControl id={e.type+'_'+block.blocks_id+'_'+index} defaultValue={e.result} placeholder={e.des} />
 											</FormGroup>
 										)
 									}

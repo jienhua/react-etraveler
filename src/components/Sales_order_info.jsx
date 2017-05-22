@@ -1,10 +1,9 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
+import {Button, FieldGroup, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 
 class Sales_order_info extends React.Component {
 	
 	render() {
-
 		let {isSOInfoHidden, toggleSOInfoView, props, isSummaryView} = this.props;
 		return (
 			<div style={{display:isSummaryView?"none":""}}>

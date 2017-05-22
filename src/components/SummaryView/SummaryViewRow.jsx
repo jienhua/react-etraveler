@@ -22,7 +22,7 @@ class SummaryViewRow extends React.Component{
 				output.push(
 					<p key={prIndex}>{pr.result}</p>
 				)
-			}else if(pr.type === 'input'){
+			}else if(pr.type === 'input' || pr.type === 'replaceInput'){
 				if(pr.result){
 					output.push(
 						<p key={prIndex}>{pr.des}: {pr.result}</p>

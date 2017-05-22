@@ -11,6 +11,9 @@ function traveler (state={}, action){
 		case actions.SET_ISCOMPLETE:
 			nextState.isComplete = !nextState.isComplete;
 			return nextState;
+		case actions.SET_ANALYSISPROCESSNOTE:
+			nextState.analysis_process_note = action.input;
+			return nextState;
 		default: return state;
 	}
 }

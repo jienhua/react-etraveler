@@ -4,8 +4,37 @@ import {SummaryViewRow} from '../../components';
 
 class SummaryView extends React.Component{
 
+	handleCASErrorMsg(CASData){
+		console.log(JSON.stringify(CASData));
+		let errorMsg = [];
+		if(CASData.hasOwnProperty('motherboardSN') &&
+		   CASData.motherboardSN !== ''){
+		   	errorMsg.push(
+		   		`CAS replaced MotherBoard with SN: ${CASData.motherboardSN}.`
+		   	);
+		}
+		if((CASData.hasOwnProperty('SSDMPN') && CASData.hasOwnProperty('SSDSN')) &&
+				(CASData.SSDMPN !== '' && CASData.SSDSN !== '')){
+			errorMsg.push(
+				`CAS replaced ${CASData.SSDMPN} SSD SN: with ${CASData.SSDSN}.`
+			);
+		}
+		if((CASData.hasOwnProperty('DIMMMPN') && CASData.hasOwnProperty('DIMMSN')) &&
+			(CASData.DIMMMPN !== '' && CASData.DIMMSN !== '')){
+			errorMsg.push(
+				`CAS replaced ${CASData.DIMMMPN} DIMM SN: with ${CASData.DIMMSN}.`
+			);
+		}
+		if(CASData.hasOwnProperty('U-Boot') && CASData['U-Boot']){
+			errorMsg.push(
+				`CAS reflash U-Boot.`
+			)
+		}
+		return errorMsg;
+	}
+
 	render(){
-		let {blueprint, blocks, blocksHeader} = this.props;
+		let {blueprint, blocks, blocksHeader, analysis_process_note} = this.props;
 		return(
 			<div>
 				<h3>Summary View</h3>
@@ -59,30 +88,34 @@ class SummaryView extends React.Component{
 				<Panel header='Disposition'>
 					{Object.keys(blocks).map(key=>{
 						let output = [];
-						blocks[key].process_record.map((e, index)=>{
-							if(e.type === 'bool_button' && e.result===false && e.action_type==='Disposition'){
+						if(blocks[key].error && blocks[key].action_type === 'Disposition'){
+							if(blocks[key].error !== 'CAS'){
 								output.push(
-									<p>{blocks[key].description} - {blocks[key].error}</p>
+									<p><b>{blocks[key].description}</b> - {blocks[key].error}</p>
+								);
+							}else{
+								let errorMsg = this.handleCASErrorMsg(blocks[key].process_record[0].CAS);
+								output.push(
+									errorMsg.map(msg=>{
+										return <p><b>{blocks[key].description}</b> - {msg}</p>
+									})
 								)
 							}
-							return;
-						})
+						}
 						return output;
 					})}
 				</Panel>
 				<br/>
 				<Panel header='Analysis Process Note'>
+					{analysis_process_note!==""?
+						<p><b>{analysis_process_note}</b></p>:""}
 					{Object.keys(blocks).map(key=>{
 						let output = [];
-						blocks[key].process_record.map((e, index)=>{
-							console.log(e.type, e.result)
-							if(e.type === 'bool_button' && e.result===false && e.action_type==='Analysis Process Note'){
-								output.push(
-									<p>{blocks[key].description} - {blocks[key].error}</p>
-								)
-							}
-							return;
-						})
+						if(blocks[key].error && blocks[key].action_type === 'Analysis Process Note'){
+							output.push(
+								<p><b>{blocks[key].description}</b> - {blocks[key].error}</p>
+							);
+						}
 						return output;
 					})}
 				</Panel>
