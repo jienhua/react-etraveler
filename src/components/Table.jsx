@@ -16,11 +16,18 @@ class Table extends React.Component{
 	}
 
 	updateText(event){
-		let {setRecordResult, singleBlockViewProps, blocks} = this.props;
+		let {setRecordResult, 
+			 singleBlockViewProps, 
+			 blocks,
+			 setRecordDatetime,
+			 setRecordResponsible,
+			 user_info} = this.props;
 
-		if(event.target.id.split('_').length <0) return;
-
+		if(event.target.id.split('_').length <0 ||
+			event.target.value === '')  return;
 		let eventProp = event.target.id.split('_');
+		let date = new Date();
+
 		if(eventProp[0] === 'CAS'){
 			// 	"process_record": [
 			// 		{
@@ -48,14 +55,22 @@ class Table extends React.Component{
 			nextBlock.process_record[process_record_index].CAS[eventProp[1]] = event.target.value;
 
 			setRecordResult({
-				index: parseInt(blocks_id),
+				index: blocks_id,
 				data: nextBlock
 			},()=>{
 				// reset state
 				this.setState({
 					CAS:{}
 				})
-			})
+			});
+			setRecordDatetime({
+				index: blocks_id,
+				date: date
+			});
+			setRecordResponsible({
+				index: blocks_id,
+				name: user_info.name
+			});
 
 		}else{
 			let	block_id = eventProp[1],
@@ -68,9 +83,17 @@ class Table extends React.Component{
 				let nextBlock = cloneDeep(blocks[block_id]);
 				nextBlock.process_record[process_record_index].result = event.target.value;
 				setRecordResult({
-					index: parseInt(block_id),
+					index: block_id,
 					data: nextBlock
-				})
+				});
+				setRecordDatetime({
+					index: block_id,
+					date: date
+				});
+				setRecordResponsible({
+					index: block_id,
+					name: user_info.name
+				});
 			}else if(type === 'replaceInput'){
 				let nextBlock = cloneDeep(blocks[block_id]);
 				let oldB = nextBlock.process_record[0], 
@@ -88,9 +111,17 @@ class Table extends React.Component{
 				}
 				// nextBlock.error = errorMsg;
 				setRecordResult({
-					index: parseInt(block_id),
-					data:nextBlock
-				})
+					index: block_id,
+					data: nextBlock
+				});
+				setRecordDatetime({
+					index: block_id,
+					date: date
+				});
+				setRecordResponsible({
+					index: block_id,
+					name: user_info.name
+				});
 			}
 		}
 
@@ -100,7 +131,14 @@ class Table extends React.Component{
 	handleClick(event){
 		if(event.target.tagName !== 'BUTTON') return;
 		let eventProp = event.target.id.split('_');
-		let {blocks, setRecordResult, changeCASModalView} = this.props;
+		let {blocks, 
+			 setRecordResult, 
+			 changeCASModalView, 
+			 setRecordDatetime,
+			 setRecordResponsible,
+			 user_info} = this.props;
+		let date = new Date();
+
 		if(eventProp[3] !== 'CAS' &&  eventProp[0] === 'multiButton'){
 			// 0 = button type
 			// 1 = blocks_id
@@ -120,7 +158,15 @@ class Table extends React.Component{
 			setRecordResult({
 				index: parseInt(eventProp[1]),
 				data: nextBlock
-			})
+			});
+			setRecordDatetime({
+				index: eventProp[1],
+				date: date
+			});
+			setRecordResponsible({
+				index: eventProp[1],
+				name: user_info.name
+			});
 		}
 		else if(eventProp[3] === 'CAS'){
 			// event from multi button CAS button
@@ -138,6 +184,14 @@ class Table extends React.Component{
 				setRecordResult({
 					index: parseInt(eventProp[1]),
 					data: nextBlock
+				});
+				setRecordDatetime({
+					index: eventProp[1],
+					date: date
+				});
+				setRecordResponsible({
+					index: eventProp[1],
+					name: user_info.name
 				});
 				changeCASModalView();
 			})
@@ -166,7 +220,15 @@ class Table extends React.Component{
 			setRecordResult({
 				index: parseInt(CAS.blocks_id),
 				data: nextBlock
-			})
+			});
+			setRecordDatetime({
+				index: CAS.blocks_id,
+				date: date
+			});
+			setRecordResponsible({
+				index: CAS.blocks_id,
+				name: user_info.name
+			});
 		}
 
 		event.stopPropagation();
@@ -192,7 +254,6 @@ class Table extends React.Component{
 			<div onBlur={(event)=>this.updateText(event)}
 				 onClick={(event)=>this.handleClick(event)}>
 				<h4>
-					Table
 					<Button onClick={changeSummaryView}
 					   style={{float:'right'}}>
 					   {isSummaryView?"Back":"SummaryView"}

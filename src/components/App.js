@@ -13,8 +13,6 @@ import TableCon from '../containers/TableCon';
 const App = (props) => {
     return(
     <div className="container">
-        <Link to='/admin' >eTravler - App</Link>
-        <hr/>
         <HeaderCon/>
         <SOCon/>
         <TableCon/>

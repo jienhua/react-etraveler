@@ -22,7 +22,20 @@ const mapDispatchToProps = (dispatch) =>{
 	return {
 		toggleSOInfoView: ()=>{
 			dispatch(actions.isSOInfoHidden());
+		},
+		setSalesOrderNumber: (input)=>{
+			dispatch(actions.setSalesOrderNumber(input))
+		},
+		setProductName:(input)=>{
+			dispatch(actions.setProductName(input))
+		},
+		setCustomerNumber:(input)=>{
+			dispatch(actions.setCustomerNumber(input))
+		},
+		setAPTPNNumber:(input)=>{
+			dispatch(actions.setAPTPNNumber(input))
 		}
+
 	}
 }
 

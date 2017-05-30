@@ -2,10 +2,23 @@ import React from 'react';
 import {Table, Panel} from 'react-bootstrap';
 import {SummaryViewRow} from '../../components';
 
+const hiddenStyle = (blocks, type)=>{
+	let display = 'none';
+
+	for(let x in blocks){
+		if(blocks[x].error && blocks[x].action_type === type){
+			display = '';
+			break;
+		}
+	}
+	return {
+		display: display
+	}
+}
+
 class SummaryView extends React.Component{
 
 	handleCASErrorMsg(CASData){
-		console.log(JSON.stringify(CASData));
 		let errorMsg = [];
 		if(CASData.hasOwnProperty('motherboardSN') &&
 		   CASData.motherboardSN !== ''){
@@ -40,7 +53,7 @@ class SummaryView extends React.Component{
 				<h3>Summary View</h3>
 				<Table bordered condensed>
 					<thead>
-				      <tr>
+				      <tr style={{backgroundColor:'#f5f5f5'}}>
 				        <th>Station</th>
 				        {blocksHeader.map((e, index)=>{
 				        	if(e === 'Error' || e==='Action') return;
@@ -62,13 +75,13 @@ class SummaryView extends React.Component{
 					    		})
 
 					    		output.push(
-					    			<tr>
+					    			<tr style={{backgroundColor:'#f5f5f5'}}>
 					    				<td rowSpan={rowSpan}>{station.station}</td>
 					    			</tr>
 					    		)
 					    		station.objects.map((object, oIndex)=>{
 					    			output.push(
-					    				<tr>
+					    				<tr style={{backgroundColor:'#f5f5f5'}}>
 					    					<td colSpan={blocksHeader.length+3}><b>{object.description}</b></td>
 					    				</tr>,
 					    			)
@@ -85,7 +98,7 @@ class SummaryView extends React.Component{
 				    </tbody>
 				</Table>
 				<br/>
-				<Panel header='Disposition'>
+				<Panel header='Disposition' style={hiddenStyle(blocks, 'Disposition')}>
 					{Object.keys(blocks).map(key=>{
 						let output = [];
 						if(blocks[key].error && blocks[key].action_type === 'Disposition'){
@@ -106,9 +119,10 @@ class SummaryView extends React.Component{
 					})}
 				</Panel>
 				<br/>
-				<Panel header='Analysis Process Note'>
+				<Panel header='Analysis Process Note' style={hiddenStyle(blocks, 'Analysis Process Note')}>
 					{analysis_process_note!==""?
 						<p><b>{analysis_process_note}</b></p>:""}
+					
 					{Object.keys(blocks).map(key=>{
 						let output = [];
 						if(blocks[key].error && blocks[key].action_type === 'Analysis Process Note'){

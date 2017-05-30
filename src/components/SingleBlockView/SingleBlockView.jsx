@@ -1,6 +1,6 @@
 import React from 'react';
 import {BlockView} from '../../components';
-import {ButtonToolbar, Button, ButtonGroup} from 'react-bootstrap';
+import {ButtonToolbar, Button, ButtonGroup, Pager} from 'react-bootstrap';
 
 class SingleBlockView extends React.Component {
 
@@ -37,12 +37,11 @@ class SingleBlockView extends React.Component {
 
 		return (
 			<div>		
-				<br/>
-				<ButtonGroup>
-					<Button onClick={()=>this.changeBlock(-1)}>Left</Button>
-					<Button onClick={()=>this.changeBlock(1)}>Right</Button>
-				</ButtonGroup>
-				<br/><br/>
+				<Pager>
+					<Pager.Item previous onClick={()=>this.changeBlock(-1)}>&larr; Previous</Pager.Item>
+    				<Pager.Item next onClick={()=>this.changeBlock(1)}>Next &rarr;</Pager.Item>
+				</Pager>
+				
 				<ButtonToolbar style={{float:'right'}}>
 					<ButtonGroup>
 						{
@@ -97,7 +96,10 @@ class SingleBlockView extends React.Component {
 						return output;
 					})
 				}
-				{singleBlockViewProps.currentGroupPosition}
+				<Pager>
+					<Pager.Item previous onClick={()=>this.changeBlock(-1)}>&larr; Previous</Pager.Item>
+    				<Pager.Item next onClick={()=>this.changeBlock(1)}>Next &rarr;</Pager.Item>
+				</Pager>
 			</div>
 		)
 	}

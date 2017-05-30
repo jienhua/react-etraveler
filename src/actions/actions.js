@@ -1,5 +1,5 @@
 export const PRINT_HELLO = 'PRINT_HELLO';
-export const SET_ISCOMPLETE = 'SET_ISCOMPLETE';
+
 export const ISFULLPAGETABLEVIEW = 'ISFULLPAGETABLEVIEW';
 export const ISSUMMARYVIEW = 'ISSUMMARYVIEW';
 export const ISHEADERHIDDEN = 'ISHEADERHIDDEN';
@@ -9,9 +9,23 @@ export const ISCASMODALVIEW = 'ISCASMODALVIEW';
 export const SET_SINGLEBLOCKVIEWPOSITION = 'SET_SINGLEBLOCKVIEWPOSITION';
 export const SET_CURRENTBLOCKPOSITION = 'SET_CURRENTBLOCKPOSITION';
 export const SET_BLOCKSPOSITIONARR = 'SET_BLOCKSPOSITIONARR';
-export const SET_RECORDRESULT = 'SET_RECORDRESULT';
-export const SET_ANALYSISPROCESSNOTE = 'SET_ANALYSISPROCESSNOTE';
 
+// Record_blocks
+export const SET_RECORDRESULT = 'SET_RECORDRESULT';
+export const SET_RECORDDATETIME = 'SET_RECORDDATETIME';
+export const SET_RECORDRESPONSIBLE = 'SET_RECORDRESPONSIBLE';
+
+
+// Traveler
+export const SET_ISCOMPLETE = 'SET_ISCOMPLETE';
+export const SET_ANALYSISPROCESSNOTE = 'SET_ANALYSISPROCESSNOTE';
+export const SET_SERIALNUMBER = 'SET_SERIALNUMBER';
+
+// Sales order INFO
+export const SET_SALESORDERNUMBER = 'SET_SALESORDERNUMBER';
+export const SET_PRODUCTNAME = 'SET_PRODUCTNAME';
+export const SET_CUSTOMERNUMBER = 'SET_CUSTOMERNUMBER';
+export const SET_APTPNNUMBER = 'SET_APTPNNUMBER';
 
 export function addNum(input) {
 	return {
@@ -77,6 +91,7 @@ export function setBlocksPositionArr(arr){
 	}
 }
 
+// Record_blocks
 export function setRecordResult(input){
 	return{
 		type: SET_RECORDRESULT,
@@ -84,9 +99,60 @@ export function setRecordResult(input){
 	}
 }
 
+export function setRecordDatetime(input){
+	return {
+		type: SET_RECORDDATETIME,
+		input
+	}
+}
+
+export function setRecordResponsible(input){
+	return {
+		type: SET_RECORDRESPONSIBLE,
+		input
+	}
+}
+
 export function setAnalysisProcessNote(input){
 	return {
 		type: SET_ANALYSISPROCESSNOTE,
+		input
+	}
+}
+
+export function setSerialNumber(input){
+	return {
+		type: SET_SERIALNUMBER,
+		input
+	}
+}
+
+
+// Sales order INFO
+export function setSalesOrderNumber(input){
+	return {
+		type: SET_SALESORDERNUMBER,
+		input
+	}
+}
+
+export function setProductName(input){
+	return {
+		type: SET_PRODUCTNAME,
+		input
+	}
+}
+
+export function setCustomerNumber(input){
+	return {
+		type: SET_CUSTOMERNUMBER,
+		input
+	}
+}
+
+export function setAPTPNNumber(input){
+	return{
+		type: SET_APTPNNUMBER,
 		input
 	}
 }

@@ -7,7 +7,6 @@ class AdminPage extends React.Component{
 	render() {
 		return (
 			<div className='container'>
-				<h4><Link to='/traveler'>admin page</Link></h4>
 				<AdminTableCon/>
 			</div>
 		)

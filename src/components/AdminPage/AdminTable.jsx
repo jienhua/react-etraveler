@@ -20,7 +20,6 @@ export class AdminTable extends React.Component{
 	render(){
 		return(
 			<div>
-				jqGrid-table
 	    		<table id="jqGrid"></table>
     			<div id="jqGridPager"></div>
 			</div>

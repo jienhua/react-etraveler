@@ -21,6 +21,9 @@ const mapDispatchToProps = (dispatch) =>{
 	return {
 		toggleHeaderView: ()=>{
 			dispatch(actions.isHeaderHidden());
+		},
+		setSerialNumber: (input)=>{
+			dispatch(actions.setSerialNumber(input));
 		}
 	}
 }

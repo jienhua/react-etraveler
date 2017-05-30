@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {FormControl} from 'react-bootstrap';
 
 class SummaryViewRow extends React.Component{
 
@@ -34,16 +35,30 @@ class SummaryViewRow extends React.Component{
 		return output;
 	}
 
+	handleDateFormat(input){
+		let output = '';
+		if(input !== ''){
+			let date = new Date(JSON.parse(input));
+			let year = date.getFullYear(),
+				month = date.getMonth()+1,
+				day = date.getDate();
+			if(month < 10){
+				month = '0'+month;
+			}
+			output = `${year}/${month}/${day}`;
+		}
+		return output;
+		
+	}
 
 	render() {
 		const {block} = this.props;
 		return (
 			<tr>
 				<td>{block.description}</td>
-				{/*<td>{block.action}</td>*/}
 				<td>{this.renderProcess(block.process_record)}</td>
-				<td><input disabled/></td>
-				<td><input type="date" disabled/></td>
+				<td>{block.responsible}</td>
+				<td>{this.handleDateFormat(block.date)}</td>
 			</tr>
 		)
 	}

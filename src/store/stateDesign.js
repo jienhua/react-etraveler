@@ -1,5 +1,8 @@
 // client state tree
 export default ({
+	"user_info":{
+		"name": "John Snow"
+	},
 	"adminPage":{
 		"colModel":[
 		    { label: 'OrderID', name: 'OrderID', key: true, width: 75 },
@@ -11,7 +14,7 @@ export default ({
 	},
 	"viewControl":{
 		"isFullPageTableView": true,
-		"isSummaryView": false,
+		"isSummaryView": true,
 		"isHeaderHidden": true,
 		"isSOInfoHidden": true,
 		"isCASModalView": false
@@ -135,14 +138,14 @@ export default ({
 						"No"
 					],
 					"error_options":{
-						"No": "Replace Top Cover"
+						"No": "Replace Top Cover."
 					},
 					"result": undefined,
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -159,14 +162,14 @@ export default ({
 						"No"
 					],
 					"error_options":{
-						"No": "Replace bottom chassis"
+						"No": "Replace bottom chassis."
 					},
 					"result": undefined,
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -184,8 +187,8 @@ export default ({
 						"Fluctuation"
 					],
 					"error_options":{
-						"Failure 0V": "Failure 0V",
-						"Fluctuation": "Fluctuation Voltage"
+						"Failure 0V": "Failure 0V.",
+						"Fluctuation": "Fluctuation Voltage."
 					},
 					"result": undefined,
 				},
@@ -206,8 +209,8 @@ export default ({
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -227,8 +230,8 @@ export default ({
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -245,14 +248,14 @@ export default ({
 						"No"
 					],
 					"error_options":{
-						"No": "Replace 1 year Fan"
+						"No": "Replace 1 year Fan."
 					},
 					"result": undefined,
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -269,14 +272,14 @@ export default ({
 						"No"
 					],
 					"error_options":{
-						"No": "Replace Defective Fan"
+						"No": "Replace Defective Fan."
 					},
 					"result": undefined,
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -293,14 +296,14 @@ export default ({
 						"No"
 					],
 					"error_options":{
-						"No": "Replace Dusty Fan"
+						"No": "Replace Dusty Fan."
 					},
 					"result": undefined,
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -317,14 +320,14 @@ export default ({
 						"No"
 					],
 					"error_options":{
-						"No": "No avaliable MAC address error"
+						"No": "No avaliable MAC address error."
 					},
 					"result": undefined,
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -347,8 +350,8 @@ export default ({
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -369,8 +372,8 @@ export default ({
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -387,8 +390,8 @@ export default ({
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -405,8 +408,8 @@ export default ({
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -423,8 +426,8 @@ export default ({
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -441,8 +444,8 @@ export default ({
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -459,8 +462,8 @@ export default ({
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -477,8 +480,8 @@ export default ({
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -499,8 +502,8 @@ export default ({
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -516,14 +519,14 @@ export default ({
 						"No"
 					],
 					"error_options":{
-						"No": "Missing Warranty Label"
+						"No": "Missing Warranty Label."
 					},
 					"result": undefined,
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -539,14 +542,14 @@ export default ({
 						"No"
 					],
 					"error_options":{
-						"No": "Customer did not return PSU"
+						"No": "Customer did not return PSU."
 					},
 					"result": undefined,
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -569,8 +572,8 @@ export default ({
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -593,8 +596,8 @@ export default ({
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -611,14 +614,14 @@ export default ({
 						"Failed"
 					],
 					"error_options":{
-						"Failed": "SSD failed DOD with duplicator"
+						"Failed": "SSD failed DOD with duplicator."
 					},
 					"result": undefined,
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -635,14 +638,14 @@ export default ({
 						"Failed"
 					],
 					"error_options":{
-						"Failed": "SSD failed Copy and Compare with duplicator"
+						"Failed": "SSD failed Copy and Compare with duplicator."
 					},
 					"result": undefined,
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -664,8 +667,8 @@ export default ({
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -681,8 +684,8 @@ export default ({
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -698,8 +701,8 @@ export default ({
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -716,14 +719,14 @@ export default ({
 						"No"
 					],
 					"error_options":{
-						"No": "Reflash U-Boot 7.1.5 and reimage PAN OS 7.1.5"
+						"No": "Reflash U-Boot 7.1.5 and reimage PAN OS 7.1.5."
 					},
 					"result": undefined,
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -740,14 +743,14 @@ export default ({
 						"Failed"
 					],
 					"error_options":{
-						"Failed":"DIMM confirmed defective with a known good system"
+						"Failed":"DIMM confirmed defective with a known good system."
 					},
 					"result": undefined,
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -769,8 +772,8 @@ export default ({
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -792,8 +795,8 @@ export default ({
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -809,8 +812,8 @@ export default ({
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -826,8 +829,8 @@ export default ({
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -850,8 +853,8 @@ export default ({
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -874,8 +877,8 @@ export default ({
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -896,8 +899,8 @@ export default ({
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		},
 		{
@@ -917,8 +920,8 @@ export default ({
 				}
 			],
 			"responsible": "",
-			"date": "type is date",
-			"edit": "type is date",
+			"date": "",
+			"edit": "",
 			"history": []
 		}
 	],
@@ -935,8 +938,8 @@ export default ({
 	// 			}
 	// 		],
 	// 		"responsible": "",
-	// 		"date": "type is date",
-	// 		"edit": "type is date"
+	// 		"date": "",
+	// 		"edit": ""
 	// 	},
 	// 	{
 	// 		"history_id": 1,
@@ -950,8 +953,8 @@ export default ({
 	// 			}
 	// 		],
 	// 		"responsible": "",
-	// 		"date": "type is date",
-	// 		"edit": "type is date"
+	// 		"date": "",
+	// 		"edit": ""
 	// 	}
 	// ]
 	

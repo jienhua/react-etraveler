@@ -34,7 +34,8 @@ const mapStateToProps = ( state ) =>{
 		isSummaryView: state.viewControl.isSummaryView,
 		isCASModalView: state.viewControl.isCASModalView,
 		singleBlockViewProps: state.singleBlockViewProps,
-		analysis_process_note: state.traveler.analysis_process_note
+		analysis_process_note: state.traveler.analysis_process_note,
+		user_info: state.user_info
 	}
 };
 
@@ -60,6 +61,12 @@ const mapDispatchToProps = (dispatch) =>{
 		},
 		setAnalysisProcessNote: (input)=>{
 			dispatch(actions.setAnalysisProcessNote(input));
+		},
+		setRecordDatetime: (input)=>{
+			dispatch(actions.setRecordDatetime(input));
+		},
+		setRecordResponsible: (input)=>{
+			dispatch(actions.setRecordResponsible(input));
 		}
 	}
 };

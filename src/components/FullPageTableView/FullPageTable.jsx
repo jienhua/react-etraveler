@@ -12,14 +12,12 @@ class FullPageTable extends React.Component {
 			<div>
 				<Table bordered condensed>
 					<thead>
-				      <tr>
+				      <tr style={{backgroundColor:'#f5f5f5'}}>
 				        <th>Station</th>
 				        {blocksHeader.map((e, index)=>{
 				        	if(e==='Error'||e==='Action') return;
 				        	return <th key={index}>{e}</th>
 				        })}
-				        <th>Responsible</th>
-				        <th>Date</th>
 				      </tr>
 				    </thead>
 
@@ -35,13 +33,13 @@ class FullPageTable extends React.Component {
 				    		})
 
 				    		output.push(
-				    			<tr>
+				    			<tr style={{backgroundColor:'#f5f5f5'}}>
 				    				<td rowSpan={rowSpan}>{station.station}</td>
 				    			</tr>
 				    		)
 				    		station.objects.map((object, oIndex)=>{
 				    			output.push(
-				    				<tr>
+				    				<tr style={{backgroundColor:'#f5f5f5'}}>
 				    					<td colSpan={blocksHeader.length+3}><b>{object.description}</b></td>
 				    				</tr>,
 				    			)

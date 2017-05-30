@@ -84,7 +84,10 @@ class BlockView extends React.Component{
 										output = (
 											<FormGroup key={index}>
 												<ControlLabel>{e.des}:</ControlLabel>
-												<FormControl id={e.type+'_'+block.blocks_id+'_'+index} defaultValue={e.result} placeholder={e.des} />
+												<FormControl id={e.type+'_'+block.blocks_id+'_'+index} 
+															 defaultValue={e.result} 
+															 placeholder={e.des} 
+															 bsSize='sm'/>
 											</FormGroup>
 										)
 									}
