@@ -51,7 +51,7 @@ class SummaryView extends React.Component{
 		return(
 			<div>
 				<h3>Summary View</h3>
-				<Table bordered condensed>
+				<Table bordered condensed className='print'>
 					<thead>
 				      <tr style={{backgroundColor:'#f5f5f5'}}>
 				        <th>Station</th>
@@ -98,7 +98,7 @@ class SummaryView extends React.Component{
 				    </tbody>
 				</Table>
 				<br/>
-				<Panel header='Disposition' style={hiddenStyle(blocks, 'Disposition')}>
+				<Panel header='Disposition' style={hiddenStyle(blocks, 'Disposition')} className='print'>
 					{Object.keys(blocks).map(key=>{
 						let output = [];
 						if(blocks[key].error && blocks[key].action_type === 'Disposition'){
@@ -119,7 +119,7 @@ class SummaryView extends React.Component{
 					})}
 				</Panel>
 				<br/>
-				<Panel header='Analysis Process Note' style={hiddenStyle(blocks, 'Analysis Process Note')}>
+				<Panel header='Analysis Process Note' style={hiddenStyle(blocks, 'Analysis Process Note')} className='print'>
 					{analysis_process_note!==""?
 						<p><b>{analysis_process_note}</b></p>:""}
 					
@@ -133,6 +133,52 @@ class SummaryView extends React.Component{
 						return output;
 					})}
 				</Panel>
+				<div >
+					<table className='print'>
+				      <tr style={{backgroundColor:'#f5f5f5'}}>
+				        <th>Station</th>
+				        {blocksHeader.map((e, index)=>{
+				        	if(e === 'Error' || e==='Action') return;
+				        	return <th key={index}>{e}</th>
+				        })}
+				        <th>Responsible</th>
+				        <th>Date</th>
+				      </tr>
+				   
+				  
+					    {blueprint.map((station, sIndex)=>{
+					    		let output =[];
+					    		let rowSpan = 1;
+
+					    		// find out number for rowSpan
+					    		station.objects.map(o=>{
+					    			rowSpan+= o.blocks.length+1;
+					    			return;
+					    		})
+
+					    		output.push(
+					    			<tr style={{backgroundColor:'#f5f5f5'}}>
+					    				<td rowSpan={rowSpan}>{station.station}</td>
+					    			</tr>
+					    		)
+					    		station.objects.map((object, oIndex)=>{
+					    			output.push(
+					    				<tr style={{backgroundColor:'#f5f5f5'}}>
+					    					<td colSpan={blocksHeader.length+3}><b>{object.description}</b></td>
+					    				</tr>,
+					    			)
+					    			object.blocks.map((b, bIndex)=>{
+					    				output.push(
+					    					<SummaryViewRow blocksHeader={blocksHeader} block={blocks[b]} isBlockHeader={false}/>
+					    				)
+					    				return;
+					    				})
+					    			return;
+					    		})
+					    		return output;
+					    	})}
+					</table>
+				</div>
 			</div>
 		)
 	}

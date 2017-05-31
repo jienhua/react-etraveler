@@ -30,8 +30,7 @@ class SingleBlockView extends React.Component {
 	}
 
 	render() {
-		let {blueprint, blocks, blocksHeader, singleBlockViewProps,/*blocksPositionArr*/
-			setRecordResult} = this.props;
+		let {blueprint, blocks, blocksHeader, singleBlockViewProps} = this.props;
 		let index = 0,
 			buttonIndex = 0;
 
@@ -85,7 +84,6 @@ class SingleBlockView extends React.Component {
 										 block={blocks[b]}
 										 blocksHeader={blocksHeader}
 										 stationNum={sIndex}
-										 setRecordResult={setRecordResult}
 									/>
 								)
 								index+=1;

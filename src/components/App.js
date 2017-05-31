@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router';
 // import { connect } from 'react-redux';
 // import styles from './App.css';
-// import './common.css';
+import './common.css';
 // import {} from '../components';
 import HeaderCon from '../containers/HeaderCon';
 import SOCon from '../containers/SOCon';

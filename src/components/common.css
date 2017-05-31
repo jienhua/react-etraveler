@@ -1,3 +1,4 @@
-body{
-	
+.table>thead>tr>th{
+	border-bottom: 2px solid #ddd !important;
 }
+

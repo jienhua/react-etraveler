@@ -6,7 +6,7 @@ import {FullPageTableRow} from '../../components';
 class FullPageTable extends React.Component {
 
 	render() {
-		let { blueprint, blocks, blocksHeader, setRecordResult} = this.props;
+		let { blueprint, blocks, blocksHeader} = this.props;
 		let index = 0;
 		return (
 			<div>
@@ -45,8 +45,9 @@ class FullPageTable extends React.Component {
 				    			)
 				    			object.blocks.map((b, bIndex)=>{
 				    				output.push(
-				    					<FullPageTableRow id={index} blocksHeader={blocksHeader} block={blocks[b]} isBlockHeader={false}
-				    										  setRecordResult={setRecordResult}/>
+				    					<FullPageTableRow id={index} blocksHeader={blocksHeader} 
+				    									  block={blocks[b]} 
+				    									  isBlockHeader={false}/>
 				    				)
 				    				index+=1;
 				    				return;

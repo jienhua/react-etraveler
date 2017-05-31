@@ -2,6 +2,7 @@ import React from 'react';
 import {FullPageTable, SingleBlockView, SummaryView, CASModal} from '../components';
 import {Button, ButtonGroup} from 'react-bootstrap';
 import {cloneDeep} from 'lodash';
+// import './Table.css';
 
 class Table extends React.Component{
 
@@ -15,18 +16,35 @@ class Table extends React.Component{
 		}
 	}
 
-	updateText(event){
-		let {setRecordResult, 
-			 singleBlockViewProps, 
-			 blocks,
-			 setRecordDatetime,
+	updateBlock(id, data){
+		let {setRecordDatetime,
 			 setRecordResponsible,
+			 setRecordResult,
 			 user_info} = this.props;
+		let date = new Date();
+
+		setRecordResult({
+			index: id,
+			data: data
+		});
+		setRecordDatetime({
+			index: id,
+			date: date
+		});
+		setRecordResponsible({
+			index: id,
+			name: user_info.name
+		});
+	}
+
+
+	handleText(event){
+		let {singleBlockViewProps, 
+			 blocks} = this.props;
 
 		if(event.target.id.split('_').length <0 ||
 			event.target.value === '')  return;
 		let eventProp = event.target.id.split('_');
-		let date = new Date();
 
 		if(eventProp[0] === 'CAS'){
 			// 	"process_record": [
@@ -54,24 +72,10 @@ class Table extends React.Component{
 			}
 			nextBlock.process_record[process_record_index].CAS[eventProp[1]] = event.target.value;
 
-			setRecordResult({
-				index: blocks_id,
-				data: nextBlock
-			},()=>{
-				// reset state
-				this.setState({
-					CAS:{}
-				})
+			this.updateBlock(blocks_id, nextBlock);
+			this.setState({
+				CAS:{}
 			});
-			setRecordDatetime({
-				index: blocks_id,
-				date: date
-			});
-			setRecordResponsible({
-				index: blocks_id,
-				name: user_info.name
-			});
-
 		}else{
 			let	block_id = eventProp[1],
 				type = eventProp[0],
@@ -82,18 +86,7 @@ class Table extends React.Component{
 			if(type === 'input'){
 				let nextBlock = cloneDeep(blocks[block_id]);
 				nextBlock.process_record[process_record_index].result = event.target.value;
-				setRecordResult({
-					index: block_id,
-					data: nextBlock
-				});
-				setRecordDatetime({
-					index: block_id,
-					date: date
-				});
-				setRecordResponsible({
-					index: block_id,
-					name: user_info.name
-				});
+				this.updateBlock(block_id, nextBlock);
 			}else if(type === 'replaceInput'){
 				let nextBlock = cloneDeep(blocks[block_id]);
 				let oldB = nextBlock.process_record[0], 
@@ -110,18 +103,7 @@ class Table extends React.Component{
 					delete nextBlock.error;
 				}
 				// nextBlock.error = errorMsg;
-				setRecordResult({
-					index: block_id,
-					data: nextBlock
-				});
-				setRecordDatetime({
-					index: block_id,
-					date: date
-				});
-				setRecordResponsible({
-					index: block_id,
-					name: user_info.name
-				});
+				this.updateBlock(block_id, nextBlock);
 			}
 		}
 
@@ -132,12 +114,7 @@ class Table extends React.Component{
 		if(event.target.tagName !== 'BUTTON') return;
 		let eventProp = event.target.id.split('_');
 		let {blocks, 
-			 setRecordResult, 
-			 changeCASModalView, 
-			 setRecordDatetime,
-			 setRecordResponsible,
-			 user_info} = this.props;
-		let date = new Date();
+			 changeCASModalView} = this.props;
 
 		if(eventProp[3] !== 'CAS' &&  eventProp[0] === 'multiButton'){
 			// 0 = button type
@@ -155,18 +132,7 @@ class Table extends React.Component{
 			}
 
 			nextBlock.process_record[eventProp[2]].result = result;
-			setRecordResult({
-				index: parseInt(eventProp[1]),
-				data: nextBlock
-			});
-			setRecordDatetime({
-				index: eventProp[1],
-				date: date
-			});
-			setRecordResponsible({
-				index: eventProp[1],
-				name: user_info.name
-			});
+			this.updateBlock(eventProp[1], nextBlock);
 		}
 		else if(eventProp[3] === 'CAS'){
 			// event from multi button CAS button
@@ -181,18 +147,7 @@ class Table extends React.Component{
 			this.setState({
 				CAS:nextCAS
 			}, ()=>{
-				setRecordResult({
-					index: parseInt(eventProp[1]),
-					data: nextBlock
-				});
-				setRecordDatetime({
-					index: eventProp[1],
-					date: date
-				});
-				setRecordResponsible({
-					index: eventProp[1],
-					name: user_info.name
-				});
+				this.updateBlock(eventProp[1], nextBlock);
 				changeCASModalView();
 			})
 		}else if(eventProp[0] === 'CASU-Boot'){
@@ -214,21 +169,11 @@ class Table extends React.Component{
 			}
 			nextBlock.process_record[CAS.process_record_index].CAS = CASData;
 			CAS['U-Boot'] = CASData['U-Boot'];
+			
 			this.setState({
 				CAS:CAS
 			})
-			setRecordResult({
-				index: parseInt(CAS.blocks_id),
-				data: nextBlock
-			});
-			setRecordDatetime({
-				index: CAS.blocks_id,
-				date: date
-			});
-			setRecordResponsible({
-				index: CAS.blocks_id,
-				name: user_info.name
-			});
+			this.updateBlock(CAS.blocks_id, nextBlock);
 		}
 
 		event.stopPropagation();
@@ -245,25 +190,28 @@ class Table extends React.Component{
 			 isSummaryView,
 			 isCASModalView,
 			 changeSummaryView,
-			 setRecordResult,
 			 changeCASModalView,
 			 setAnalysisProcessNote,
 			 analysis_process_note} = this.props;
 		let {CAS} = this.state;
 		return (
-			<div onBlur={(event)=>this.updateText(event)}
+			<div onBlur={(event)=>this.handleText(event)}
 				 onClick={(event)=>this.handleClick(event)}>
 				<h4>
-					<Button onClick={changeSummaryView}
-					   style={{float:'right'}}>
-					   {isSummaryView?"Back":"SummaryView"}
-					</Button>
+					<ButtonGroup style={{float:'right'}} className='no-print'>
+						<Button onClick={changeSummaryView}>
+						   {isSummaryView?"Back":"SummaryView"}
+						</Button>
+						<Button onClick={()=>window.print()}>
+							Print
+						</Button>
+					</ButtonGroup>
 				</h4>
 				<Button onClick={changeTableView}
 					   style={{display:isSummaryView?"none":""}}
 				>{isFullPageTableView?"SingleBlockView":"FullPageView"}</Button>
 
-				<ButtonGroup style={{marginLeft: "25%"}}>
+				<ButtonGroup style={{marginLeft: "25%"}} className='no-print'>
 					<Button onClick={()=>setAnalysisProcessNote('Scan Duplicate')}
 							active={analysis_process_note==='Scan Duplicate'?true:false}>
 						Scan Duplicate
@@ -277,17 +225,16 @@ class Table extends React.Component{
 				{isSummaryView? <SummaryView blueprint={blueprint}
 											 blocks={blocks}
 											 blocksHeader={blocksHeader}
-											 analysis_process_note={analysis_process_note}/> : 
+											 analysis_process_note={analysis_process_note}
+											 /> : 
 					isFullPageTableView? <FullPageTable blueprint={blueprint} 
 													 blocks={blocks} 
-													 blocksHeader={blocksHeader}
-													 setRecordResult={setRecordResult}/> : 
+													 blocksHeader={blocksHeader}/> : 
 									  <SingleBlockView blueprint={blueprint}
 									  				   blocks={blocks}
 									  				   blocksHeader={blocksHeader}
 									  				   singleBlockViewProps={singleBlockViewProps}
-									  				   changeCurrentBlock={changeCurrentBlock}
-									  				   setRecordResult={setRecordResult}/>}
+									  				   changeCurrentBlock={changeCurrentBlock}/>}
 				<CASModal show={isCASModalView} 
 						  changeCASModalView={changeCASModalView} 
 						  CASData={CAS}/>

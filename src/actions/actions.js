@@ -156,3 +156,19 @@ export function setAPTPNNumber(input){
 		input
 	}
 }
+
+
+// API
+
+export function saveETraveler(input){
+	return (dispatch, getState) =>{
+		// const state = getState();
+		//axios.post('url',{
+		// post data,	
+		//})
+		//.then(res =>{
+		//	dispatch(actions)
+		//})
+		//.catch(err =>{})
+	};
+}

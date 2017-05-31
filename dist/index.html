@@ -12,8 +12,34 @@
 	<link rel='stylesheet' type='text/css' media='screen' href='jqGrid/css/ui.jqgrid-bootstrap-ui.css' />
 
 	<style type="text/css">
-		.table>thead>tr>th{
-			border-bottom: 2px solid #ddd !important;
+		@media print {
+			.no-print{
+				display:none !important;
+			}
+			table, th, td {
+			    border: 1px solid black;
+			    border-collapse: collapse;
+			    padding: 0px !important;
+			}
+			p {
+				margin:0px;
+			}
+
+		}
+		@media screen {
+			.print{
+				display: none !important;
+			}
+			table, th, td {
+			    border: 1px solid black;
+			    border-collapse: collapse;
+			    padding: 0px;
+			    font-size: 12px;
+			}
+			p {
+				margin:0px;
+				font-size: 12px;
+			}
 		}
 	</style>
 </head>
